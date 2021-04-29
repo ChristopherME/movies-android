@@ -1,0 +1,8 @@
+include ':test-shared'
+include ':core:views'
+include ':features:movies'
+include ':utils'
+include ':core:network'
+include ':functional-programming'
+include ':app'
+rootProject.name = "Movies"

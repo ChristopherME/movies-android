@@ -1,0 +1,27 @@
+apply from: "$rootDir/common-android-library.gradle"
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation project(Modules.functionalProgramming)
+
+    implementation project(Core.views)
+    implementation project(Core.network)
+
+    implementation project(Modules.utils)
+
+    implementation Libs.coroutinesAndroid
+    implementation Libs.coil
+
+    testImplementation Libs.testMockk
+    testImplementation Libs.coroutinesTest
+    testImplementation Libs.mockwebServer
+
+    testImplementation project(Modules.testShared)
+}

@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+
+android {
+    compileSdkVersion DefaultConfig.compileSdk
+
+    defaultConfig {
+        minSdkVersion DefaultConfig.minSdk
+        targetSdkVersion DefaultConfig.targetSdk
+        versionCode Releases.versionCode
+        versionName Releases.versionName
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            buildConfigField("String", "RootPackage", "\"com.christopher_elias.movies\"")
+        }
+    }
+
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+dependencies {
+    implementation Libs.kotlin
+    testImplementation Libs.junit4
+    //androidTestImplementation Dependencies.androidXRunner
+    //androidTestImplementation Dependencies.androidXEspresso
+}
