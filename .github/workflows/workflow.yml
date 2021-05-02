@@ -1,0 +1,18 @@
+## 1
+name: Test and build
+
+# Triggers the workflow on push or pull request events
+on: pull_request
+
+## 2
+jobs:
+  ## 3
+  unit_tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+      - uses: actions/checkout@v2
+
+      - name: Assemble Debug
+      - run: ./gradlew assembleDebug
