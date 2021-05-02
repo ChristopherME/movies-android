@@ -7,8 +7,8 @@ on: pull_request
 ## 2
 jobs:
   ## 3
-  unit_tests:
-    name: Unit Tests
+  build_app:
+    name: Build App
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,3 +19,23 @@ jobs:
 
       - name: Assemble Debug
         run: ./gradlew assembleDebug
+
+  ## 4
+  run_unit_tests:
+    name: Unit Test Modules
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Network unit test
+        run: ./gradlew :core:network:test
+
+      - name: Utils unit test
+        run: ./gradlew :utils:testDebugUnitTest
+
+      - name: Movies feature module unit test
+        run: ./gradlew :features:movies:testDebugUnitTest
