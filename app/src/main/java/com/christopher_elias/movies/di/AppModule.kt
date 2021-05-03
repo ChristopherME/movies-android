@@ -3,9 +3,9 @@ package com.christopher_elias.movies.di
 import android.content.Context
 import com.christopher_elias.movies.R
 import com.christopher_elias.movies.resource_provider.ResourceProviderImpl
+import com.christopher_elias.movies.connectivity.ConnectivityUtilsImpl
 import com.christopher_elias.utils.resource_provider.ResourceProvider
 import com.christopher_elias.utils.connectivity.ConnectivityUtils
-import com.christopher_elias.utils.connectivity.ConnectivityUtilsImpl
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
