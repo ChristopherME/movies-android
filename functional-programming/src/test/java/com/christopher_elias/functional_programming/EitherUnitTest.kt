@@ -1,4 +1,6 @@
 import com.christopher_elias.functional_programming.*
+import com.christopher_elias.functional_programming.utils.toError
+import com.christopher_elias.functional_programming.utils.toSuccess
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

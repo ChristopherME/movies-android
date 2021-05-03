@@ -1,5 +1,7 @@
 package com.christopher_elias.functional_programming
 
+import com.christopher_elias.functional_programming.utils.toSuccess
+
 /*
  * Created by Christopher Elias on 22/04/2021
  * christopher.mike.96@gmail.com
