@@ -7,7 +7,7 @@ import com.christopher_elias.movies.data_source.remote.retrofit_service.MovieSer
 import com.christopher_elias.movies.domain.repository.MoviesRepository
 import com.christopher_elias.movies.mapper.MovieMapper
 import com.christopher_elias.movies.mapper.MovieMapperImpl
-import com.christopher_elias.movies.presentation.movies_list.MovieListViewModel
+import com.christopher_elias.movies.presentation.ui.movies_list.MovieListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module

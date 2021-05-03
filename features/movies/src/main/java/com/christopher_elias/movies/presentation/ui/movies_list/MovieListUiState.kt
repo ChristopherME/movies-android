@@ -1,4 +1,4 @@
-package com.christopher_elias.movies.presentation.movies_list
+package com.christopher_elias.movies.presentation.ui.movies_list
 
 import com.christopher_elias.functional_programming.Failure
 import com.christopher_elias.movies.presentation.model.MovieUi

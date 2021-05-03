@@ -1,4 +1,4 @@
-package com.christopher_elias.movies.presentation.movies_detail
+package com.christopher_elias.movies.presentation.ui.movies_list.adapter
 
 /*
  * Created by Christopher Elias on 26/04/2021
@@ -8,5 +8,7 @@ package com.christopher_elias.movies.presentation.movies_detail
  * Lima, Peru.
  */
 
-class MovieDetailFragment {
+class MovieListAdapter(
+
+) {
 }

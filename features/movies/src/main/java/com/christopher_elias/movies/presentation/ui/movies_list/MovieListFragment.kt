@@ -1,4 +1,4 @@
-package com.christopher_elias.movies.presentation.movies_list
+package com.christopher_elias.movies.presentation.ui.movies_list
 
 import android.os.Bundle
 import android.view.View
@@ -18,7 +18,7 @@ import timber.log.Timber
  * Lima, Peru.
  */
 
-class MoviesListFragment : Fragment(R.layout.fragment_movie_list) {
+class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
     private val moviesViewModel: MovieListViewModel by viewModel()
 
