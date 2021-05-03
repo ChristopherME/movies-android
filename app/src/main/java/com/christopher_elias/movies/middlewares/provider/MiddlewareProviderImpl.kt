@@ -6,7 +6,7 @@ import com.christopher_elias.network.middleware.provider.MiddlewareProvider
 
 /*
  * Created by Christopher Elias on 3/05/2021
- * christopher.elias@loop-ideas.com
+ * christopher.mike.96@gmail.com
  *
  * Loop Ideas
  * Lima, Peru.
