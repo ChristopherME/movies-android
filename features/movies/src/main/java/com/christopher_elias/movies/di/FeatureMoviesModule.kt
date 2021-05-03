@@ -30,7 +30,8 @@ val featureMoviesModule = module {
             connectivityUtils = get(),
             ioDispatcher = get(named("ioDispatcher")),
             adapter = get(),
-            movieService = get()
+            movieService = get(),
+            tmdbKey = get(named("TMDB_KEY"))
         )
     }
 

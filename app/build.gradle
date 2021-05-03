@@ -7,6 +7,9 @@ android {
     compileSdkVersion DefaultConfig.compileSdk
     buildToolsVersion(DefaultConfig.buildToolsVersion)
 
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file("local.properties").newDataInputStream())
+
     defaultConfig {
         applicationId DefaultConfig.appId
         minSdkVersion DefaultConfig.minSdk
@@ -18,6 +21,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            resValue ("string", "tmdb_key", properties.getProperty("tmdb.key", ""))
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

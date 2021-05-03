@@ -20,12 +20,13 @@ import kotlinx.coroutines.CoroutineDispatcher
  * Lima, Peru.
  */
 
-//TODO: Add your own API KEY
+
 internal class MoviesRemoteDataSourceImpl(
     private val connectivityUtils: ConnectivityUtils,
     private val ioDispatcher: CoroutineDispatcher,
     private val adapter: JsonAdapter<ResponseError>,
-    private val movieService: MovieService
+    private val movieService: MovieService,
+    private val tmdbKey: String
 ) : MoviesRemoteDataSource {
 
     override suspend fun getMovies(): Either<Failure, List<MovieResponse>> {
@@ -36,7 +37,7 @@ internal class MoviesRemoteDataSourceImpl(
             adapter = adapter,
             retrofitCall = {
                 movieService.getTopRatedMovies(
-                    apiKey = "YOUR_API_KEY_HERE",
+                    apiKey = tmdbKey,
                     language = "en-US",
                     page = 1
                 )
