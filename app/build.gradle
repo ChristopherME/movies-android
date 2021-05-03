@@ -48,6 +48,7 @@ dependencies {
     implementation Libs.androidXConstraintLayout
 
     implementation Libs.koinAndroidx
+    implementation Libs.timber
 
     debugImplementation Libs.leakCanary
 

@@ -16,8 +16,10 @@ dependencies {
 
     implementation project(Modules.utils)
 
+    implementation Libs.koinAndroidx
     implementation Libs.coroutinesAndroid
     implementation Libs.coil
+    implementation Libs.timber
 
     testImplementation Libs.testMockk
     testImplementation Libs.coroutinesTest

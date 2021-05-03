@@ -85,6 +85,9 @@ object Libs {
     // MockWebServer
     val mockwebServer = "com.squareup.okhttp3:mockwebserver:${Versions.MOCK_WEB_SERVER_VERSION}"
 
+    // Timber
+    val timber = "com.jakewharton.timber:timber:${Versions.TIMBER_VERSION}"
+
     // Coil
     val coil = "io.coil-kt:coil:${Versions.COIL_VERSION}"
 
