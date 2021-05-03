@@ -34,11 +34,21 @@ android {
 
 dependencies {
 
+    implementation project(Modules.utils)
+
+    implementation project(Core.network)
+    implementation project(Core.views)
+
+    implementation project(Features.movies)
+
     implementation Libs.kotlin
     implementation Libs.androidxCore
     implementation Libs.androidxAppCompat
     implementation Libs.googleMaterial
     implementation Libs.androidXConstraintLayout
+
+    implementation Libs.koinAndroidx
+    implementation Libs.timber
 
     debugImplementation Libs.leakCanary
 

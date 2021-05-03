@@ -19,8 +19,12 @@ object Modules {
 
 object Core {
     // For Styles, colors & anything COMMON view related.
-    val views = ":core:views"
+    val views = ":core:views" // TODO: Rename this to designSystem.
     val network = ":core:network"
+}
+
+object Features {
+    val movies = ":features:movies"
 }
 
 object Versions {
@@ -49,6 +53,8 @@ object Versions {
     const val ANDROIDX_APP_COMPAT_VERSION = "1.2.0"
     const val GOOGLE_MATERIAL_VERSION = "1.3.0"
     const val ANDROIDX_CONSTRAINT_LAYOUT_VERSION = "2.0.4"
+
+    const val DI_KOIN_VERSION = "3.0.1"
 
 
 }
@@ -79,8 +85,14 @@ object Libs {
     // MockWebServer
     val mockwebServer = "com.squareup.okhttp3:mockwebserver:${Versions.MOCK_WEB_SERVER_VERSION}"
 
+    // Timber
+    val timber = "com.jakewharton.timber:timber:${Versions.TIMBER_VERSION}"
+
     // Coil
     val coil = "io.coil-kt:coil:${Versions.COIL_VERSION}"
+
+    // DI Koin
+    val koinAndroidx = "io.insert-koin:koin-android:${Versions.DI_KOIN_VERSION}"
 
     // Fragments
     val fragments = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_VERSION}"
