@@ -2,7 +2,7 @@ package com.christopher_elias.actors.domain.models
 
 /*
  * Created by Christopher Elias on 2/05/2021
- * christopher.elias@loop-ideas.com
+ * christopher.mike.96@gmail.com
  *
  * Loop Ideas
  * Lima, Peru.
@@ -10,6 +10,7 @@ package com.christopher_elias.actors.domain.models
 
 data class Actor(
     val id: Int,
+    val name: String,
     val popularity: Double,
     val profilePath: String,
     val knownFor: List<MovieResume>

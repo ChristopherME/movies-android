@@ -1,4 +1,4 @@
-package com.christopher_elias.actors.presentation.list
+package com.christopher_elias.actors.presentation.list.state
 
 import com.christopher_elias.actors.presentation.model.ActorUi
 import com.christopher_elias.functional_programming.Failure
@@ -6,7 +6,7 @@ import com.christopher_elias.utils.OneTimeEvent
 
 /*
  * Created by Christopher Elias on 2/05/2021
- * christopher.elias@loop-ideas.com
+ * christopher.mike.96@gmail.com
  *
  * Loop Ideas
  * Lima, Peru.

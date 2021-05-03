@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.christopher_elias.actors.domain.repository.ActorsRepository
 import com.christopher_elias.actors.mapper.ActorsMapper
+import com.christopher_elias.actors.presentation.list.state.ActorsListUiState
 import com.christopher_elias.actors.presentation.model.ActorUi
 import com.christopher_elias.functional_programming.Failure
 import com.christopher_elias.utils.toOneTimeEvent
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 
 /*
  * Created by Christopher Elias on 2/05/2021
- * christopher.elias@loop-ideas.com
+ * christopher.mike.96@gmail.com
  *
  * Loop Ideas
  * Lima, Peru.

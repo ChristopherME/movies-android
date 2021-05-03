@@ -5,23 +5,22 @@ import com.christopher_elias.actors.data_source.models.ActorsResponse
 import com.christopher_elias.actors.data_source.remote.retrofit.ActorsService
 import com.christopher_elias.functional_programming.Either
 import com.christopher_elias.functional_programming.Failure
+import com.christopher_elias.network.middleware.provider.MiddlewareProvider
 import com.christopher_elias.network.models.base.ResponseError
-import com.christopher_elias.network.models.exception.NetworkMiddlewareFailure
 import com.christopher_elias.network.utils.call
-import com.christopher_elias.utils.connectivity.ConnectivityUtils
 import com.squareup.moshi.JsonAdapter
 import kotlinx.coroutines.CoroutineDispatcher
 
 /*
  * Created by Christopher Elias on 2/05/2021
- * christopher.elias@loop-ideas.com
+ * christopher.mike.96@gmail.com
  *
  * Loop Ideas
  * Lima, Peru.
  */
 
 internal class ActorsRemoteDataSourceImpl(
-    private val connectivityUtils: ConnectivityUtils,
+    private val middlewareProvider: MiddlewareProvider,
     private val ioDispatcher: CoroutineDispatcher,
     private val errorAdapter: JsonAdapter<ResponseError>,
     private val actorsService: ActorsService,
@@ -30,8 +29,7 @@ internal class ActorsRemoteDataSourceImpl(
 
     override suspend fun getActors(): Either<Failure, List<ActorsResponse>> {
         return call(
-            middleWare = { connectivityUtils.isNetworkAvailable() },
-            middleWareFailure = NetworkMiddlewareFailure(middleWareExceptionMessage = "No network detected"),
+            middleWares = middlewareProvider.getAll(),
             ioDispatcher = ioDispatcher,
             adapter = errorAdapter,
             retrofitCall = {
