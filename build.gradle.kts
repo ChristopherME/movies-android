@@ -4,6 +4,7 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven { setUrl("https://jitpack.io") }
     }
     dependencies {
         classpath(Libs.gradleTools)
@@ -19,6 +20,7 @@ allprojects {
         google()
         jcenter()
         mavenCentral()
+        maven { setUrl("https://jitpack.io") }
     }
 }
 

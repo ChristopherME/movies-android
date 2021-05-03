@@ -20,6 +20,7 @@ dependencies {
     implementation Libs.coroutinesAndroid
     implementation Libs.coil
     implementation Libs.timber
+    implementation Libs.viewBindingDelegate
 
     testImplementation Libs.testMockk
     testImplementation Libs.coroutinesTest
