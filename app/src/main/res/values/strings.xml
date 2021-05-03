@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Movies</string>
+    <string name="error_no_network_detected">No se encontró conexión a internet. Revisa que estés conectado a una red WIFI o tengas tus datos encendidos.</string>
 </resources>
