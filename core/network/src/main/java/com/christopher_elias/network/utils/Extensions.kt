@@ -63,7 +63,7 @@ fun Throwable.parseException(
             val errorService = adapter.parseError(response()?.errorBody()?.source())
             if (errorService != null) {
                 ServiceBodyFailure(
-                    internalCode = errorService.status ?: 0,
+                    internalCode = errorService.status,
                     internalMessage = errorService.message
                 )
             } else {
