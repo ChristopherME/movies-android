@@ -1,4 +1,6 @@
-package com.christopher_elias.functional_programming
+package com.christopher_elias.functional_programming.utils
+
+import com.christopher_elias.functional_programming.Either
 
 /*
  * Created by Christopher Elias on 22/04/2021

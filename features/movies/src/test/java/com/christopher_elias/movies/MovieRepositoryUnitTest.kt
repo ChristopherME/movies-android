@@ -9,15 +9,14 @@ import com.christopher_elias.movies.data_source.remote.retrofit_service.MovieSer
 import com.christopher_elias.movies.domain.repository.MoviesRepository
 import com.christopher_elias.movies.mapper.MovieMapper
 import com.christopher_elias.movies.mapper.MovieMapperImpl
-import com.christopher_elias.network.models.base.ResponseError
+import com.christopher_elias.network.middleware.provider.MiddlewareProvider
 import com.christopher_elias.network.models.base.ResponseItems
 import com.christopher_elias.network.models.exception.NetworkMiddlewareFailure
 import com.christopher_elias.network.models.exception.ServiceBodyFailure
 import com.christopher_elias.test_shared.either.getDataWhenResultIsFailureOrThrowException
 import com.christopher_elias.test_shared.either.getDataWhenResultIsSuccessOrThrowException
-import com.christopher_elias.utils.connectivity.ConnectivityUtils
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
+import com.christopher_elias.test_shared.middleware.DefaultTestNetworkMiddleware
+import com.christopher_elias.test_shared.network.DefaultRemoteConfig
 import io.mockk.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -42,18 +41,17 @@ import retrofit2.Response
 class MovieRepositoryUnitTest {
 
     private val testDispatcher = TestCoroutineDispatcher()
-    private val moshi = Moshi.Builder().build()
-    private val remoteErrorAdapter: JsonAdapter<ResponseError> =
-        moshi.adapter(ResponseError::class.java)
+    private val remoteErrorAdapter = DefaultRemoteConfig.provideRemoteErrorAdapter()
 
     private val movieService = mockk<MovieService>()
-    private val connectivityUtils = mockk<ConnectivityUtils>()
+    private val middlewareProvider = mockk<MiddlewareProvider>()
 
     private val remoteDataSource: MoviesRemoteDataSource = MoviesRemoteDataSourceImpl(
-        connectivityUtils = connectivityUtils,
+        middlewareProvider = middlewareProvider,
         ioDispatcher = testDispatcher,
         adapter = remoteErrorAdapter,
-        movieService = movieService
+        movieService = movieService,
+        tmdbKey = ""
     )
 
     private val mapper: MovieMapper = MovieMapperImpl(
@@ -69,10 +67,14 @@ class MovieRepositoryUnitTest {
     fun `Assert repository return movies when remote service works as expected`() {
         val remoteMovies: List<MovieResponse> = MoviesData.provideRemoteMoviesFromAssets()
 
-        every { connectivityUtils.isNetworkAvailable() } returns true
+        every { middlewareProvider.getAll() } returns listOf(
+            DefaultTestNetworkMiddleware(
+                isMiddlewareValid = true
+            )
+        )
 
         coEvery {
-            movieService.getTopRatedMovies("YOUR_API_KEY_HERE", "en-US", 1)
+            movieService.getTopRatedMovies(apiKey = any(), language = any(), page = any())
         } returns ResponseItems(remoteMovies)
 
         runBlockingTest {
@@ -157,7 +159,12 @@ class MovieRepositoryUnitTest {
         // If the Network middleware condition it should return some message
         // and SHOULDN'T invoke the retrofit service call.
 
-        every { connectivityUtils.isNetworkAvailable() } returns false
+        every { middlewareProvider.getAll() } returns listOf(
+            DefaultTestNetworkMiddleware(
+                isMiddlewareValid = false,
+                failureMessage = "No network detected"
+            )
+        )
 
         runBlockingTest {
             repository.getMovies().getDataWhenResultIsFailureOrThrowException { failure ->
@@ -186,7 +193,11 @@ class MovieRepositoryUnitTest {
         val errorBody = "{\"status_message\": \"Invalid Request\",\"status_code\": 400}"
             .toResponseBody("application/json".toMediaTypeOrNull())
 
-        every { connectivityUtils.isNetworkAvailable() } returns true
+        every { middlewareProvider.getAll() } returns listOf(
+            DefaultTestNetworkMiddleware(
+                isMiddlewareValid = true
+            )
+        )
 
         coEvery {
             movieService.getTopRatedMovies(any(), any(), any())

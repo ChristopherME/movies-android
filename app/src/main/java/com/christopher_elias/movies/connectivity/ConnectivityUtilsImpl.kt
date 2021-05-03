@@ -1,8 +1,9 @@
-package com.christopher_elias.utils.connectivity
+package com.christopher_elias.movies.connectivity
 
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import com.christopher_elias.utils.connectivity.ConnectivityUtils
 
 /*
  * Created by Christopher Elias on 26/04/2021
@@ -13,7 +14,7 @@ import android.net.NetworkCapabilities
  */
 
 // This can be an internal class if we move the module to
-class ConnectivityUtilsImpl(
+internal class ConnectivityUtilsImpl(
     private val applicationContext: Context
 ) : ConnectivityUtils {
     override fun isNetworkAvailable(): Boolean {

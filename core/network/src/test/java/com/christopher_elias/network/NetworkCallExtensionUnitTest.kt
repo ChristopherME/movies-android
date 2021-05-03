@@ -1,7 +1,11 @@
+import com.christopher_elias.functional_programming.Either
 import com.christopher_elias.functional_programming.Failure
-import com.christopher_elias.functional_programming.toError
-import com.christopher_elias.functional_programming.toSuccess
+import com.christopher_elias.functional_programming.utils.toError
+import com.christopher_elias.functional_programming.utils.toSuccess
+import com.christopher_elias.network.AnotherDumbMiddleware
+import com.christopher_elias.network.DumbMiddleware
 import com.christopher_elias.network.models.base.ResponseError
+import com.christopher_elias.network.models.exception.NetworkMiddlewareFailure
 import com.christopher_elias.network.models.exception.ServiceBodyFailure
 import com.christopher_elias.network.utils.call
 import com.squareup.moshi.JsonAdapter
@@ -85,4 +89,37 @@ class NetworkCallExtensionTest {
             )
         }
     }
+
+    @Test
+    fun `when middleware is not valid return its failure`() {
+        runBlockingTest {
+            val dumbMiddleware = DumbMiddleware(
+                hardCodedValidation = false,
+                middlewareFailureMessage = "X"
+            )
+            val middlewares = listOf(
+                AnotherDumbMiddleware(),
+                AnotherDumbMiddleware(),
+                dumbMiddleware,
+                AnotherDumbMiddleware()
+            )
+            val result = call(
+                middleWares = middlewares,
+                ioDispatcher = dispatcher,
+                adapter = adapter
+            ) {
+                10
+            }
+            println("dumMiddleware: ${dumbMiddleware.failure.middleWareExceptionMessage}")
+            println("result: $result")
+
+            with(result as Either.Error<NetworkMiddlewareFailure>) {
+                assertEquals(
+                    dumbMiddleware.failure.middleWareExceptionMessage,
+                    this.error.middleWareExceptionMessage
+                )
+            }
+        }
+    }
+
 }

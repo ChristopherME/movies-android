@@ -39,3 +39,6 @@ jobs:
 
       - name: Movies feature module unit test
         run: ./gradlew :features:movies:testDebugUnitTest
+
+      - name: Actors feature module unit test
+        run: ./gradlew :features:actors:testDebugUnitTest
