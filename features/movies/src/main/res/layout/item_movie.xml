@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_margin="4dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivMoviePoster"

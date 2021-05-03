@@ -23,7 +23,7 @@ class MovieListViewHolder(
     fun bind(path: String) {
         binding.ivMoviePoster.load("https://image.tmdb.org/t/p/w500/$path") {
             crossfade(durationMillis = 2000)
-            transformations(RoundedCornersTransformation(25f))
+            transformations(RoundedCornersTransformation(12.5f))
         }
     }
 }
