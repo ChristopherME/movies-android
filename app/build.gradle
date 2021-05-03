@@ -8,7 +8,9 @@ android {
     buildToolsVersion(DefaultConfig.buildToolsVersion)
 
     Properties properties = new Properties()
-    properties.load(project.rootProject.file("local.properties").newDataInputStream())
+    if (project.rootProject.file('local.properties').exists()) {
+        properties.load(project.rootProject.file("local.properties").newDataInputStream())
+    }
 
     defaultConfig {
         applicationId DefaultConfig.appId
