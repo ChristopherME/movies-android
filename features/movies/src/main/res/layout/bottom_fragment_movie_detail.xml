@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivMoviePoster"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_margin="@dimen/padding_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/white" />
+
+    <TextView
+        android:id="@+id/tvMovieName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_regular"
+        android:layout_marginEnd="@dimen/padding_small"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:layout_constraintEnd_toStartOf="@id/ivMovieDetailClose"
+        app:layout_constraintStart_toEndOf="@id/ivMoviePoster"
+        app:layout_constraintTop_toTopOf="@id/ivMoviePoster"
+        tools:text="The Godfather" />
+
+    <TextView
+        android:id="@+id/tvMovieReleaseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="#999999"
+        app:layout_constraintStart_toStartOf="@id/tvMovieName"
+        app:layout_constraintTop_toBottomOf="@id/tvMovieName"
+        tools:text="2014" />
+
+    <TextView
+        android:id="@+id/tvMovieOverview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:layout_marginEnd="@dimen/padding_regular"
+        android:maxLines="4"
+        android:textAppearance="?attr/textAppearanceBody2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvMovieName"
+        app:layout_constraintTop_toBottomOf="@id/tvMovieReleaseDate"
+        tools:text="Lorem ipsum lorem ipsum lorem ipsum loremLorem ipsum lorem ipsum lorem ipsum loremLorem ipsum lorem ipsum lorem ipsum lorem" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivMovieDetailClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/padding_small"
+        android:background="@drawable/bg_circle"
+        android:padding="@dimen/padding_small"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivMoviePoster"
+        app:srcCompat="@drawable/ic_close" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMoviePlay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_medium"
+        android:gravity="center"
+        android:text="@string/feature_movie_detail_btn_play"
+        app:icon="@drawable/ic_play_button"
+        app:iconGravity="textStart"
+        app:iconPadding="@dimen/padding_regular"
+        app:layout_constraintEnd_toStartOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="@id/ivMoviePoster"
+        app:layout_constraintTop_toBottomOf="@id/ivMoviePoster" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/tvMovieDownload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/padding_small"
+        android:text="@string/feature_movie_detail_tv_download"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="#999999"
+        app:drawableTopCompat="@drawable/ic_download"
+        app:layout_constraintEnd_toStartOf="@id/tvMovieAdvance"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="@id/btnMoviePlay" />
+
+    <TextView
+        android:id="@+id/tvMovieAdvance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/padding_small"
+        android:text="@string/feature_movie_detail_tv_advance"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="#999999"
+        app:drawableTopCompat="@drawable/ic_advance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvMovieDownload"
+        app:layout_constraintTop_toTopOf="@id/btnMoviePlay" />
+
+    <View
+        android:id="@+id/lineDivider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/padding_regular"
+        android:background="#999999"
+        app:layout_constraintTop_toBottomOf="@id/btnMoviePlay" />
+
+    <TextView
+        android:id="@+id/tvMovieInfo"
+        android:padding="@dimen/padding_regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/feature_movie_detail_tv_info"
+        android:drawablePadding="@dimen/padding_small"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintTop_toBottomOf="@id/lineDivider"
+        app:drawableStartCompat="@drawable/ic_information"
+        app:drawableEndCompat="@drawable/ic_right_arrow"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

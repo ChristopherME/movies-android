@@ -5,6 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tvMoviesFeatureTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/padding_small"
+        android:paddingTop="@dimen/padding_regular"
+        android:paddingEnd="0dp"
+        android:paddingBottom="@dimen/padding_small"
+        android:text="@string/feature_movie_tv_trends"
+        android:textAppearance="?attr/textAppearanceHeadline5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
         android:id="@+id/progressBarMovies"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -14,17 +27,18 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMoviesFeatureTitle"
         tools:visibility="visible" />
 
     <TextView
         android:id="@+id/tvMoviesEmpty"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:text="@string/feature_movie_tv_empty"
+        android:textAppearance="?attr/textAppearanceBody2"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="Empty"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovies"
@@ -34,6 +48,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progressBarMovies"
         app:spanCount="3"
+        tools:itemCount="3"
         tools:listitem="@layout/item_movie" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
