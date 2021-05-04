@@ -1,17 +1,28 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="Movies.DayNight" parent="Base.Theme.Movies.Dark"/>
+    <style name="Movies.DayNight" parent="Theme.Movies.Dark"/>
 
-    <style name="Base.Theme.Movies.Dark" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Movies.Dark" parent="Theme.Movies">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/movie_blue_200</item>
+        <item name="colorPrimaryVariant">@color/movie_blue_300</item>
+        <item name="colorOnPrimary">@color/movie_black_900</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/movie_orange_300</item>
+        <item name="colorSecondaryVariant">@color/movie_orange_300</item>
+        <item name="colorOnSecondary">@color/movie_black_900</item>
+
+        <item name="android:colorBackground">@color/movie_black_900</item>
+        <item name="colorSurface">@color/movie_black_800</item>
+        <item name="colorError">@color/movie_red_200</item>
+
+        <item name="colorPrimarySurfaceVariant">?attr/colorSurface</item>
+        
+        <item name="colorOnBackground">@color/movie_white_50</item>
+        <item name="colorOnSurface">@color/movie_white_50</item>
+        <item name="colorOnError">@color/movie_black_900</item>
+        
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
