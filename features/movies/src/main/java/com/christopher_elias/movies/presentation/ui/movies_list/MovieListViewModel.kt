@@ -1,4 +1,4 @@
-package com.christopher_elias.movies.presentation.movies_list
+package com.christopher_elias.movies.presentation.ui.movies_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

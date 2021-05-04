@@ -1,17 +1,43 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="Movies" parent="Base.Theme.Movies"/>
+    <style name="Movies.DayNight" parent="Theme.Movies" />
 
-    <style name="Base.Theme.Movies" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Movies" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/movie_blue_700</item>
+        <item name="colorPrimaryVariant">@color/movie_blue_800</item>
+        <item name="colorOnPrimary">@color/movie_white_50</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/movie_orange_500</item>
+        <item name="colorSecondaryVariant">@color/movie_orange_400</item>
         <item name="colorOnSecondary">@color/black</item>
+
+        <item name="android:colorBackground">@color/movie_blue_50</item>
+        <item name="colorSurface">@color/movie_white_50</item>
+        <item name="colorError">@color/movie_red_400</item>
+
+        <item name="colorPrimarySurfaceVariant">?attr/colorPrimaryVariant</item>
+
+        <item name="colorOnBackground">@color/movie_black_900</item>
+        <item name="colorOnSurface">@color/movie_black_900</item>
+        <item name="colorOnError">@color/movie_black_900</item>
+        
+        <!--Typography-->
+        <item name="textAppearanceHeadline2">@style/TextAppearance.Movies.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.Movies.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.Movies.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.Movies.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.Movies.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.Movies.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.Movies.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.Movies.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.Movies.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.Movies.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.Movies.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.Movies.Overline</item>
+
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

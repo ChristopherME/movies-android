@@ -1,0 +1,22 @@
+package com.christopher_elias.movies.presentation.ui.movies_list.adapter
+
+import androidx.recyclerview.widget.DiffUtil
+import com.christopher_elias.movies.presentation.model.MovieUi
+
+/*
+ * Created by Christopher Elias on 3/05/2021
+ * christopher.mike.96@gmail.com
+ *
+ * Loop Ideas
+ * Lima, Peru.
+ */
+
+class MovieDiffCallBack : DiffUtil.ItemCallback<MovieUi>() {
+    override fun areItemsTheSame(oldItem: MovieUi, newItem: MovieUi): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: MovieUi, newItem: MovieUi): Boolean {
+        return oldItem == newItem
+    }
+}

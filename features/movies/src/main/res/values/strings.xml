@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_movie_tv_empty">No movies found. Try again later.</string>
+    <string name="feature_movie_tv_trends">Trends</string>
+
+    <!-- Short detail-->
+    <string name="feature_movie_detail_btn_play">Play</string>
+    <string name="feature_movie_detail_tv_download">Download</string>
+    <string name="feature_movie_detail_tv_advance">Advance</string>
+    <string name="feature_movie_detail_tv_info">Info</string>
+</resources>

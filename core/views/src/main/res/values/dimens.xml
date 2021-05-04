@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- padding -->
+    <dimen name="padding_extra_small">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_small_medium">12dp</dimen>
+    <dimen name="padding_regular">16dp</dimen>
+    <dimen name="padding_regular_medium">20dp</dimen>
+    <dimen name="padding_medium">24dp</dimen>
+    <dimen name="padding_wide">32dp</dimen>
+    <dimen name="padding_wide_medium">36dp</dimen>
+    <dimen name="padding_big">48dp</dimen>
+    <dimen name="padding_extra_wide">64dp</dimen>
+
+</resources>

@@ -31,7 +31,7 @@ object Versions {
 
     const val KOTLIN_VERSION = "1.4.32"
     const val COROUTINES_VERSION = "1.4.3"
-    const val GRADLE_TOOLS_VERSION = "4.1.3"
+    const val GRADLE_TOOLS_VERSION = "4.2.0"
 
     const val FRAGMENT_VERSION = "1.3.3"
     const val LIFECYCLE_VERSION = "2.3.1"
