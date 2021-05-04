@@ -1,7 +1,9 @@
 package com.christopher_elias.movies.presentation.ui.movies_list
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -12,7 +14,6 @@ import com.christopher_elias.movies.presentation.model.MovieUi
 import com.christopher_elias.movies.presentation.ui.movies_detail.MovieDetailBottomSheetFragment
 import com.christopher_elias.movies.presentation.ui.movies_list.adapter.MovieListAdapter
 import com.christopher_elias.utils.consumeOnce
-import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,9 +29,20 @@ import timber.log.Timber
 
 class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
-    private val binding by viewBinding(FragmentMovieListBinding::bind)
+    private var _binding: FragmentMovieListBinding? = null
+    private val binding: FragmentMovieListBinding
+        get() = _binding!!
 
     private val moviesViewModel: MovieListViewModel by viewModel()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        return _binding?.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -82,5 +94,10 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
                 putParcelable("movie", movie)
             }
         }.show(childFragmentManager, "MovieDetail")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

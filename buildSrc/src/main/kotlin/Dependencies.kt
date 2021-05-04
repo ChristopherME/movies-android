@@ -35,7 +35,6 @@ object Versions {
 
     const val FRAGMENT_VERSION = "1.3.3"
     const val LIFECYCLE_VERSION = "2.3.1"
-    const val VIEW_BINDING_DELEGATE_VERSION = "1.0.0"
 
     const val RETROFIT_VERSION = "2.9.0"
     const val LOGGING_INTERCEPTOR_VERSION = "4.9.0"
@@ -98,9 +97,6 @@ object Libs {
     // Fragments
     val fragments = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_VERSION}"
     val viewModels = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE_VERSION}"
-
-    // ViewBinding
-    val viewBindingDelegate = "com.github.Zhuinden:fragmentviewbindingdelegate-kt:${Versions.VIEW_BINDING_DELEGATE_VERSION}"
 
     // ||
     // TESTING
