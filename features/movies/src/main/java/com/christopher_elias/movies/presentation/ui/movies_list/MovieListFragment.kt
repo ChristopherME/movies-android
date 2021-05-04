@@ -77,5 +77,10 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
     private fun onMovieClicked(movie: MovieUi) {
         Timber.d("Movie: $movie")
+        MovieDetailBottomSheetFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable("movie", movie)
+            }
+        }.show(childFragmentManager, "MovieDetail")
     }
 }
