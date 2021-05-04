@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.christopher_elias.movies.R
 import com.christopher_elias.movies.databinding.FragmentMovieListBinding
 import com.christopher_elias.movies.presentation.model.MovieUi
+import com.christopher_elias.movies.presentation.ui.movies_detail.MovieDetailBottomSheetFragment
 import com.christopher_elias.movies.presentation.ui.movies_list.adapter.MovieListAdapter
 import com.christopher_elias.utils.consumeOnce
 import com.zhuinden.fragmentviewbindingdelegatekt.viewBinding
@@ -59,7 +60,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
                 .submitList(movies)
 
             // Empty view
-            binding.tvMoviesEmpty.isVisible = movies.isEmpty()
+            binding.tvMoviesEmpty.isVisible = !isLoading && movies.isEmpty()
 
             // Display error if any. Only once.
             error?.let {
