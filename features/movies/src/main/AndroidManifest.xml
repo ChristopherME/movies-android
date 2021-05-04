@@ -2,6 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.christopher_elias.movies">
 
-    <application android:theme="@style/Movies" />
+    <application android:theme="@style/Movies.DayNight" />
 
 </manifest>
