@@ -21,8 +21,8 @@ dependencies {
     implementation Libs.coroutinesAndroid
     implementation Libs.coil
     implementation Libs.timber
-    api Libs.navigationFragment
-    api Libs.navigationUi
+    implementation Libs.navigationFragment
+    implementation Libs.navigationUi
 
     testImplementation Libs.testMockk
     testImplementation Libs.coroutinesTest

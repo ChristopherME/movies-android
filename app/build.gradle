@@ -57,6 +57,9 @@ dependencies {
     implementation project(Core.network)
     implementation project(Core.views)
 
+    implementation Libs.navigationFragment
+    implementation Libs.navigationUi
+
     implementation project(Features.movies)
     implementation project(Features.actors)
 
