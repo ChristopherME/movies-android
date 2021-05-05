@@ -25,6 +25,7 @@ object Core {
 
 object Features {
     val movies = ":features:movies"
+    val actors = ":features:actors"
 }
 
 object Versions {

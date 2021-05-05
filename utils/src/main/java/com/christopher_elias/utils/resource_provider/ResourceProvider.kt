@@ -10,4 +10,5 @@ package com.christopher_elias.utils.resource_provider
 
 interface ResourceProvider {
     fun getString(resourceId: Int): String
+    fun getString(resourceId: Int, vararg args: Any): String
 }

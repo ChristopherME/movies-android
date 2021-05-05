@@ -3,7 +3,7 @@ package com.christopher_elias.movies.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.christopher_elias.movies.R
-import com.christopher_elias.movies.presentation.ui.movies_list.MovieListFragment
+import com.christopher_elias.features.movies.presentation.ui.movies_list.MovieListFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
