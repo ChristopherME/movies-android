@@ -1,6 +1,7 @@
 package com.christopher_elias.movies
 
 import android.app.Application
+import com.christopher_elias.actors.di.featureActorsModule
 import com.christopher_elias.movies.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -33,7 +34,8 @@ class MoviesApp : Application() {
                     coroutinesModule,
                     networkModule,
                     middleWareModule,
-                    featureMoviesModule
+                    featureMoviesModule,
+                    featureActorsModule
                 )
             )
         }

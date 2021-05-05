@@ -48,6 +48,7 @@ dependencies {
     implementation project(Core.views)
 
     implementation project(Features.movies)
+    implementation project(Features.actors)
 
     implementation Libs.kotlin
     implementation Libs.androidxCore
