@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_feature_actors"
+    app:startDestination="@id/fragment_actors">
+
+    <fragment
+        android:id="@+id/fragment_actors"
+        android:name="com.christopher_elias.features.actors.presentation.ui.actors_list.ActorsListFragment"
+        android:label="Actors"
+        tools:layout="@layout/fragment_actors_list">
+
+        <action
+            android:id="@+id/action_go_to_actor_detail"
+            app:destination="@+id/fragment_actor_detail"
+            app:popUpTo="@id/fragment_actors" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_actor_detail"
+        android:name="com.christopher_elias.features.actors.presentation.ui.actors_detail.ActorDetailFragment"
+        android:label="Actor_Detail"
+        tools:layout="@layout/fragment_actor_detail">
+
+        <argument
+            android:name="actor"
+            app:argType="com.christopher_elias.features.actors.presentation.model.ActorUi" />
+
+    </fragment>
+
+</navigation>
