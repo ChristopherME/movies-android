@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.christopher_elias.movies">
+    package="com.christopher_elias.features.movies">
 
     <application android:theme="@style/Movies.DayNight" />
 
