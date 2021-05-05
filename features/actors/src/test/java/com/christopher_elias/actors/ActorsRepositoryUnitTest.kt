@@ -17,6 +17,7 @@ import com.christopher_elias.test_shared.either.getDataWhenResultIsFailureOrThro
 import com.christopher_elias.test_shared.either.getDataWhenResultIsSuccessOrThrowException
 import com.christopher_elias.test_shared.middleware.DefaultTestNetworkMiddleware
 import com.christopher_elias.test_shared.network.DefaultRemoteConfig
+import com.christopher_elias.utils.resource_provider.ResourceProvider
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
@@ -57,8 +58,10 @@ class ActorsRepositoryUnitTest {
         tmdbKey = ""
     )
 
+    private val mockResourceProvider: ResourceProvider = MockResourceProviderImpl()
     private val mapper: ActorsMapper = ActorsMapperImpl(
-        defaultDispatcher = testDispatcher
+        defaultDispatcher = testDispatcher,
+        resourceProvider = mockResourceProvider
     )
 
     private val repository: ActorsRepository = ActorsRepositoryImpl(

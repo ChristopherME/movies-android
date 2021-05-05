@@ -35,7 +35,12 @@ val featureActorsModule = module {
         )
     }
 
-    factory<ActorsMapper> { ActorsMapperImpl(defaultDispatcher = get(named("defaultDispatcher"))) }
+    factory<ActorsMapper> {
+        ActorsMapperImpl(
+            defaultDispatcher = get(named("defaultDispatcher")),
+            resourceProvider = get()
+        )
+    }
 
     factory<ActorsRepository> { ActorsRepositoryImpl(remoteDataSource = get(), mapper = get()) }
 

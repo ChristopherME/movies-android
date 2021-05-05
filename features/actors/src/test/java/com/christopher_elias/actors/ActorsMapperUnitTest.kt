@@ -6,6 +6,7 @@ import com.christopher_elias.actors.domain.models.Actor
 import com.christopher_elias.actors.domain.models.MovieResume
 import com.christopher_elias.actors.mapper.ActorsMapper
 import com.christopher_elias.actors.mapper.ActorsMapperImpl
+import com.christopher_elias.utils.resource_provider.ResourceProvider
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
@@ -24,7 +25,11 @@ import org.junit.Test
 class ActorsMapperUnitTest {
 
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
-    private val mapper: ActorsMapper = ActorsMapperImpl(defaultDispatcher = testCoroutineDispatcher)
+    private val mockResourceProvider: ResourceProvider = MockResourceProviderImpl()
+    private val mapper: ActorsMapper = ActorsMapperImpl(
+        defaultDispatcher = testCoroutineDispatcher,
+        resourceProvider = mockResourceProvider
+    )
 
     @Test
     fun `assert map REMOTE actors to DOMAIN actors is passing the right data`() = runBlockingTest {
