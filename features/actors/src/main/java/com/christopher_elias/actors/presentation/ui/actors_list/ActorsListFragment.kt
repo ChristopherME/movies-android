@@ -1,4 +1,4 @@
-package com.christopher_elias.actors.presentation.list
+package com.christopher_elias.actors.presentation.ui.actors_list
 
 import android.os.Bundle
 import android.view.View

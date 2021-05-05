@@ -1,4 +1,4 @@
-package com.christopher_elias.actors.presentation.list.state
+package com.christopher_elias.actors.presentation.ui.actors_list.state
 
 import com.christopher_elias.actors.presentation.model.ActorUi
 import com.christopher_elias.functional_programming.Failure

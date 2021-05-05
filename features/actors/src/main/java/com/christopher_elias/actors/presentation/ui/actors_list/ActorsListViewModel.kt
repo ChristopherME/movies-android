@@ -1,10 +1,10 @@
-package com.christopher_elias.actors.presentation.list
+package com.christopher_elias.actors.presentation.ui.actors_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.christopher_elias.actors.domain.repository.ActorsRepository
 import com.christopher_elias.actors.mapper.ActorsMapper
-import com.christopher_elias.actors.presentation.list.state.ActorsListUiState
+import com.christopher_elias.actors.presentation.ui.actors_list.state.ActorsListUiState
 import com.christopher_elias.actors.presentation.model.ActorUi
 import com.christopher_elias.functional_programming.Failure
 import com.christopher_elias.utils.toOneTimeEvent

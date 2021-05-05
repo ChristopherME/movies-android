@@ -7,7 +7,7 @@ import com.christopher_elias.actors.data_source.remote.retrofit.ActorsService
 import com.christopher_elias.actors.domain.repository.ActorsRepository
 import com.christopher_elias.actors.mapper.ActorsMapper
 import com.christopher_elias.actors.mapper.ActorsMapperImpl
-import com.christopher_elias.actors.presentation.list.ActorsListViewModel
+import com.christopher_elias.actors.presentation.ui.actors_list.ActorsListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
