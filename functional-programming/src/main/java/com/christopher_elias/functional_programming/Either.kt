@@ -19,7 +19,7 @@ import com.christopher_elias.functional_programming.utils.toSuccess
  * @see Error
  * @see Success
  *
- * https://danielwestheide.com/blog/the-neophytes-guide-to-scala-part-7-the-either-type/
+ * [Resource](https://fernandocejas.com/blog/engineering/2019-05-08-architecting-android-reloaded/)
  */
 sealed class Either<out L, out R> {
 
