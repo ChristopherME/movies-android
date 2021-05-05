@@ -1,3 +1,5 @@
+![build](https://github.com/ChristopherME/movies-android/actions/workflows/workflow.yml/badge.svg)
+
 # Movies
 
 Movies is a simple project to study and play with some android components, architecture and tools for Android development.
