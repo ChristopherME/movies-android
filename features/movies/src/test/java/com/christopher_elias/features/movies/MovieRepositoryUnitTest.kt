@@ -3,12 +3,12 @@ package com.christopher_elias.features.movies
 import com.christopher_elias.features.movies.data.MoviesData
 import com.christopher_elias.features.movies.data.data_source.MoviesRemoteDataSource
 import com.christopher_elias.features.movies.data.repository.MoviesRepositoryImpl
-import com.christopher_elias.features.movies.data_source.model.MovieResponse
+import com.christopher_elias.common.models.data.MovieResponse
 import com.christopher_elias.features.movies.data_source.remote.MoviesRemoteDataSourceImpl
 import com.christopher_elias.features.movies.data_source.remote.retrofit_service.MovieService
-import com.christopher_elias.features.movies.domain.repository.MoviesRepository
-import com.christopher_elias.features.movies.mapper.MovieMapper
-import com.christopher_elias.features.movies.mapper.MovieMapperImpl
+import com.christopher_elias.features.movies.domain.MoviesRepository
+import com.christopher_elias.common.models.mapper.MovieMapper
+import com.christopher_elias.common.models.mapper.MovieMapperImpl
 import com.christopher_elias.network.middleware.provider.MiddlewareProvider
 import com.christopher_elias.network.models.base.ResponseItems
 import com.christopher_elias.network.models.exception.NetworkMiddlewareFailure
@@ -140,9 +140,9 @@ class MovieRepositoryUnitTest {
                     firstDomainMovie.releaseDate
                 )
                 assertEquals(
-                    "Remote movie originalTitle field is not the same as the Domain movie",
-                    firstRemoteMovie.originalTitle,
-                    firstDomainMovie.originalTitle
+                    "Remote movie title field is not the same as the Domain movie",
+                    firstRemoteMovie.title,
+                    firstDomainMovie.title
                 )
                 assertEquals(
                     "Remote movie originalLanguage field is not the same as the Domain movie",

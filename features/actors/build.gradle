@@ -10,6 +10,9 @@ android {
 }
 
 dependencies {
+    implementation project(Common.models)
+    implementation project(Common.uiComponents)
+
     implementation project(Modules.functionalProgramming)
 
     implementation project(Core.views)
@@ -19,7 +22,6 @@ dependencies {
 
     implementation Libs.koinAndroidx
     implementation Libs.coroutinesAndroid
-    implementation Libs.coil
     implementation Libs.timber
     implementation Libs.navigationFragment
     implementation Libs.navigationUi

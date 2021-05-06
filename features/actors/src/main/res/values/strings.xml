@@ -3,4 +3,5 @@
     <string name="feature_actors_tv_title">Actors</string>
     <string name="feature_actors_tv_work_on">Appear on %s</string>
     <string name="feature_actors_tv_empty">No actors found. Try again later.</string>
+    <string name="feature_actor_detail_tv_appear_on">Appear on</string>
 </resources>

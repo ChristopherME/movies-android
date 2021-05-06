@@ -23,7 +23,7 @@
         android:name="com.christopher_elias.features.movies.presentation.ui.movies_detail.MovieDetailBottomSheetFragment"
         tools:layout="@layout/bottom_fragment_movie_detail" >
         <argument android:name="movie"
-            app:argType="com.christopher_elias.features.movies.presentation.model.MovieUi"/>
+            app:argType="com.christopher_elias.common.models.presentation.MovieUi"/>
     </dialog>
 
 </navigation>

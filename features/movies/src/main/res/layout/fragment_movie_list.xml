@@ -49,6 +49,6 @@
         app:layout_constraintTop_toBottomOf="@id/progressBarMovies"
         app:spanCount="3"
         tools:itemCount="3"
-        tools:listitem="@layout/item_movie" />
+        tools:listitem="@layout/item_movie_poster" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

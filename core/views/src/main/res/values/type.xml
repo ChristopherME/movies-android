@@ -23,7 +23,7 @@
     </style>
 
     <style name="TextAppearance.Movies.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="fontFamily">@font/work_sans_medium</item>
+        <item name="fontFamily">@font/work_sans_bold</item>
         <item name="android:textColor">@color/color_on_surface_emphasis_high</item>
     </style>
 

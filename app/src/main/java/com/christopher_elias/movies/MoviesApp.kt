@@ -1,6 +1,7 @@
 package com.christopher_elias.movies
 
 import android.app.Application
+import com.christopher_elias.common.models.di.commonModelsModule
 import com.christopher_elias.features.actors.di.featureActorsModule
 import com.christopher_elias.features.movies.di.featureMoviesModule
 import com.christopher_elias.movies.di.*
@@ -35,6 +36,7 @@ class MoviesApp : Application() {
                     coroutinesModule,
                     networkModule,
                     middleWareModule,
+                    commonModelsModule,
                     featureMoviesModule,
                     featureActorsModule
                 )

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.christopher_elias.features.movies.R
 import com.christopher_elias.features.movies.databinding.FragmentMovieListBinding
-import com.christopher_elias.features.movies.presentation.model.MovieUi
+import com.christopher_elias.common.models.presentation.MovieUi
 import com.christopher_elias.features.movies.presentation.ui.movies_detail.MovieDetailBottomSheetFragment
 import com.christopher_elias.features.movies.presentation.ui.movies_list.adapter.MovieListAdapter
 import com.christopher_elias.utils.consumeOnce

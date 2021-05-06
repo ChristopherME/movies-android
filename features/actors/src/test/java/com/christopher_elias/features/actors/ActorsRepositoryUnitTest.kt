@@ -1,5 +1,7 @@
 package com.christopher_elias.features.actors
 
+import com.christopher_elias.common.models.mapper.MovieMapper
+import com.christopher_elias.common.models.mapper.MovieMapperImpl
 import com.christopher_elias.features.actors.data.ActorsData
 import com.christopher_elias.features.actors.data.data_source.ActorsRemoteDataSource
 import com.christopher_elias.features.actors.data.repository.ActorsRepositoryImpl
@@ -59,8 +61,14 @@ class ActorsRepositoryUnitTest {
     )
 
     private val mockResourceProvider: ResourceProvider = MockResourceProviderImpl()
+
+    private val movieMapper: MovieMapper = MovieMapperImpl(
+        defaultDispatcher = testDispatcher
+    )
+
     private val mapper: ActorsMapper = ActorsMapperImpl(
         defaultDispatcher = testDispatcher,
+        movieMapper = movieMapper,
         resourceProvider = mockResourceProvider
     )
 
@@ -128,15 +136,15 @@ class ActorsRepositoryUnitTest {
                 )
 
                 assertEquals(
-                    "Remote resumed movie originalTitle is not the same as the Domain resumed movie originalTitle",
-                    remoteActorResumedMovie.originalTitle,
-                    domainActorResumedMovie.originalTitle
+                    "Remote resumed movie title is not the same as the Domain resumed movie originalTitle",
+                    remoteActorResumedMovie.title,
+                    domainActorResumedMovie.title
                 )
 
                 assertEquals(
                     "Remote resumed movie posterPath is not the same as the Domain resumed movie posterPath",
-                    remoteActorResumedMovie.posterPath,
-                    domainActorResumedMovie.posterPath
+                    remoteActorResumedMovie.image,
+                    domainActorResumedMovie.image
                 )
             }
         }

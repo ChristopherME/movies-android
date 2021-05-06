@@ -1,4 +1,7 @@
-package com.christopher_elias.features.movies.domain.model
+package com.christopher_elias.common.models.presentation
+
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
 /*
  * Created by Christopher Elias on 26/04/2021
@@ -8,7 +11,8 @@ package com.christopher_elias.features.movies.domain.model
  * Lima, Peru.
  */
 
-data class Movie(
+@Parcelize
+data class MovieUi(
     val id: Int,
     val isAdultOnly: Boolean,
     val popularity: Double,
@@ -19,6 +23,5 @@ data class Movie(
     val title: String,
     val overview: String,
     val releaseDate: String,
-    val originalTitle: String,
     val originalLanguage: String
-)
+) : Parcelable

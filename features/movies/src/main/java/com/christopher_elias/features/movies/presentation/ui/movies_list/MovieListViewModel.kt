@@ -3,9 +3,9 @@ package com.christopher_elias.features.movies.presentation.ui.movies_list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.christopher_elias.functional_programming.Failure
-import com.christopher_elias.features.movies.domain.repository.MoviesRepository
-import com.christopher_elias.features.movies.mapper.MovieMapper
-import com.christopher_elias.features.movies.presentation.model.MovieUi
+import com.christopher_elias.features.movies.domain.MoviesRepository
+import com.christopher_elias.common.models.mapper.MovieMapper
+import com.christopher_elias.common.models.presentation.MovieUi
 import com.christopher_elias.utils.toOneTimeEvent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

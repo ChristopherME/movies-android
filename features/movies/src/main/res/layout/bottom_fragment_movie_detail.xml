@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/padding_regular"
         android:layout_marginEnd="@dimen/padding_small"
-        android:textAppearance="?attr/textAppearanceHeadline5"
+        android:textAppearance="?attr/textAppearanceHeadline6"
         app:layout_constraintEnd_toStartOf="@id/ivMovieDetailClose"
         app:layout_constraintStart_toEndOf="@id/ivMoviePoster"
         app:layout_constraintTop_toTopOf="@id/ivMoviePoster"
