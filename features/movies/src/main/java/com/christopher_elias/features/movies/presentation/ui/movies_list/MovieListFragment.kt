@@ -51,7 +51,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
     }
 
     private fun initView() {
-        binding.rvMovies.adapter = MovieListAdapter(clickListener = ::onMovieClicked)
+        binding.rvMovies.adapter = MovieListAdapter()
     }
 
     private fun collectUiState() {

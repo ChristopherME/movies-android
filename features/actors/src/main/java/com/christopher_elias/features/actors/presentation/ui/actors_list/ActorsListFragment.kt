@@ -10,14 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.christopher_elias.features.actors.R
 import com.christopher_elias.features.actors.databinding.FragmentActorsListBinding
-import com.christopher_elias.features.actors.presentation.model.ActorUi
 import com.christopher_elias.features.actors.presentation.ui.actors_list.adapter.ActorListAdapter
 import com.christopher_elias.features.actors.presentation.ui.actors_list.state.ActorsListUiState
 import com.christopher_elias.utils.consumeOnce
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 /*
  * Created by Christopher Elias on 2/05/2021
@@ -51,7 +49,7 @@ class ActorsListFragment : Fragment(R.layout.fragment_actors_list) {
     }
 
     private fun initView() {
-        binding.rvActors.adapter = ActorListAdapter(listener = ::onActorClicked)
+        binding.rvActors.adapter = ActorListAdapter()
     }
 
     private fun collectUiState() {
@@ -86,10 +84,6 @@ class ActorsListFragment : Fragment(R.layout.fragment_actors_list) {
             }
         }
 
-    }
-
-    private fun onActorClicked(actor: ActorUi) {
-        Timber.d("actor: $actor")
     }
 
     override fun onDestroyView() {
