@@ -37,6 +37,9 @@ jobs:
       - name: Utils unit test
         run: ./gradlew :utils:testDebugUnitTest
 
+      - name: Common Models unit test
+        run: ./gradlew :common:models:testDebugUnitTest
+
       - name: Movies feature module unit test
         run: ./gradlew :features:movies:testDebugUnitTest
 
