@@ -8,3 +8,4 @@ include ':functional-programming'
 include ':app'
 rootProject.name = "Movies"
 include ':common:models'
+include ':common:ui-components'
