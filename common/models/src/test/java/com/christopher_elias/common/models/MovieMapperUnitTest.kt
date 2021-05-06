@@ -8,6 +8,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Test
 
 /*
@@ -26,15 +27,15 @@ class MovieMapperUnitTest {
 
     @Test
     fun `assert map REMOTE movies to DOMAIN movies is passing the right data`() = runBlockingTest {
-        // Assume we get an structure like this.
+        // Assume we get an structure like this. With the image null but with a backDropImage working.
         val remoteMovie = MovieResponse(
             id = 1,
             isAdultOnly = true,
             popularity = 9.5,
             voteAverage = 10.5,
             voteCount = 100,
-            image = "someImageUrl.com",
-            backdropImage = "someBackDropImageUrl.com",
+            image = null,
+            backdropImage = "",
             title = "Movie",
             overview = "From remote service",
             releaseDate = "12/12/2012",
@@ -74,14 +75,13 @@ class MovieMapperUnitTest {
             domainMovie.voteCount
         )
         assertEquals(
-            "Remote movie image field is not the same as the Domain movie",
-            remoteMovie.image,
-            domainMovie.image
-        )
-        assertEquals(
             "Remote movie backdropImage field is not the same as the Domain movie",
             remoteMovie.backdropImage,
-            domainMovie.backdropImage
+            domainMovie.image
+        )
+        assertNull(
+            "Remote movie backdropImage field is null",
+            remoteMovie.backdropImage
         )
         assertEquals(
             "Remote movie title field is not the same as the Domain movie",
@@ -120,7 +120,6 @@ class MovieMapperUnitTest {
             voteAverage = 10.5,
             voteCount = 100,
             image = "someImageUrl.com",
-            backdropImage = "someBackDropImageUrl.com",
             title = "Movie",
             overview = "From remote service",
             releaseDate = "12/12/2012",
@@ -162,11 +161,6 @@ class MovieMapperUnitTest {
             "Domain movie image field is not the same as The UI movie",
             domainMovie.image,
             uiMovie.image
-        )
-        assertEquals(
-            "Domain movie backdropImage field is not the same as The UI movie",
-            domainMovie.backdropImage,
-            uiMovie.backdropImage
         )
         assertEquals(
             "Domain movie title field is not the same as The UI movie",
