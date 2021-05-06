@@ -115,14 +115,9 @@ class MovieRepositoryUnitTest {
                     firstDomainMovie.voteCount
                 )
                 assertEquals(
-                    "Remote movie image field is not the same as the Domain movie",
-                    firstRemoteMovie.image,
+                    "Remote movie final Image field is not the same as the Domain movie",
+                    firstRemoteMovie.image ?: firstRemoteMovie.backdropImage ?: "",
                     firstDomainMovie.image
-                )
-                assertEquals(
-                    "Remote movie backdropImage field is not the same as the Domain movie",
-                    firstRemoteMovie.backdropImage,
-                    firstDomainMovie.backdropImage
                 )
                 assertEquals(
                     "Remote movie title field is not the same as the Domain movie",

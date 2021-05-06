@@ -37,8 +37,7 @@ class MovieMapperImpl(
             popularity = remoteMovie.popularity,
             voteAverage = remoteMovie.voteAverage,
             voteCount = remoteMovie.voteCount,
-            image = remoteMovie.image,
-            backdropImage = remoteMovie.backdropImage,
+            image = remoteMovie.image ?: remoteMovie.backdropImage ?: "",
             title = remoteMovie.title ?: remoteMovie.originalTitle
             ?: remoteMovie.originalTitleAlternative
             ?: "No title found",
@@ -69,7 +68,6 @@ class MovieMapperImpl(
             voteAverage = domainMovie.voteAverage,
             voteCount = domainMovie.voteCount,
             image = domainMovie.image,
-            backdropImage = domainMovie.backdropImage,
             title = domainMovie.title,
             overview = domainMovie.overview,
             releaseDate = domainMovie.releaseDate,
