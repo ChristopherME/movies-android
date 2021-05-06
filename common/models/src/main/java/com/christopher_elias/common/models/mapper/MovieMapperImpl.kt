@@ -39,10 +39,12 @@ class MovieMapperImpl(
             voteCount = remoteMovie.voteCount,
             image = remoteMovie.image,
             backdropImage = remoteMovie.backdropImage,
-            title = remoteMovie.title,
+            title = remoteMovie.title ?: remoteMovie.originalTitle
+            ?: remoteMovie.originalTitleAlternative
+            ?: "No title found",
             overview = remoteMovie.overview,
-            releaseDate = remoteMovie.releaseDate,
-            originalTitle = remoteMovie.originalTitle,
+            releaseDate = remoteMovie.releaseDate ?: remoteMovie.releaseDateAlternative
+            ?: "No date found",
             originalLanguage = remoteMovie.originalLanguage
         )
     }
@@ -71,7 +73,6 @@ class MovieMapperImpl(
             title = domainMovie.title,
             overview = domainMovie.overview,
             releaseDate = domainMovie.releaseDate,
-            originalTitle = domainMovie.originalTitle,
             originalLanguage = domainMovie.originalLanguage
         )
     }

@@ -13,17 +13,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="?attr/colorOnSurface"/>
+        tools:background="?attr/colorOnSurface" />
 
     <TextView
         android:id="@+id/tvActorName"
-        android:padding="@dimen/padding_regular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:padding="@dimen/padding_regular"
         android:textAppearance="?attr/textAppearanceHeadline4"
         app:layout_constraintTop_toBottomOf="@id/ivActorProfileImage"
         tools:text="Christopher Elias" />
+
+    <TextView
+        android:id="@+id/tvWorkOn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_regular"
+        android:text="@string/feature_actor_detail_tv_appear_on"
+        android:textAppearance="?attr/textAppearanceBody1"
+        app:layout_constraintTop_toBottomOf="@id/tvActorName" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMovies"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWorkOn"
+        app:spanCount="3"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_movie_poster" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

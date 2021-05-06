@@ -1,12 +1,10 @@
 package com.christopher_elias.features.actors.mapper
 
+import com.christopher_elias.common.models.mapper.MovieMapper
 import com.christopher_elias.features.actors.R
 import com.christopher_elias.features.actors.data_source.models.ActorsResponse
-import com.christopher_elias.features.actors.data_source.models.MovieResumeResponse
 import com.christopher_elias.features.actors.domain.models.Actor
-import com.christopher_elias.features.actors.domain.models.MovieResume
 import com.christopher_elias.features.actors.presentation.model.ActorUi
-import com.christopher_elias.features.actors.presentation.model.MovieResumeUi
 import com.christopher_elias.utils.resource_provider.ResourceProvider
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -21,6 +19,7 @@ import kotlinx.coroutines.withContext
 
 internal class ActorsMapperImpl(
     private val defaultDispatcher: CoroutineDispatcher,
+    private val movieMapper: MovieMapper,
     private val resourceProvider: ResourceProvider
 ) : ActorsMapper {
 
@@ -40,25 +39,7 @@ internal class ActorsMapperImpl(
             name = remoteActor.name,
             popularity = remoteActor.popularity,
             profilePath = remoteActor.profilePath,
-            knownFor = mapRemoteMoviesResumedToDomain(remoteActor.knownFor)
-        )
-    }
-
-    override suspend fun mapRemoteMoviesResumedToDomain(
-        remoteMovies: List<MovieResumeResponse>
-    ): List<MovieResume> {
-        return withContext(defaultDispatcher) {
-            remoteMovies.map { mapRemoteMovieResumedToDomain(it) }
-        }
-    }
-
-    override suspend fun mapRemoteMovieResumedToDomain(
-        remoteMovie: MovieResumeResponse
-    ): MovieResume {
-        return MovieResume(
-            id = remoteMovie.id,
-            originalTitle = remoteMovie.originalTitle ?: "",
-            posterPath = remoteMovie.posterPath
+            knownFor = movieMapper.mapRemoteMoviesListToDomain(remoteActor.knownFor)
         )
     }
 
@@ -80,27 +61,9 @@ internal class ActorsMapperImpl(
             profilePath = domainActor.profilePath,
             moviesNames = resourceProvider.getString(
                 R.string.feature_actors_tv_work_on,
-                domainActor.knownFor.joinToString { movieResume -> movieResume.originalTitle }
+                domainActor.knownFor.joinToString { movieResume -> movieResume.title }
             ),
-            knownFor = mapDomainMoviesResumedToUi(domainActor.knownFor)
-        )
-    }
-
-    override suspend fun mapDomainMoviesResumedToUi(
-        domainMovies: List<MovieResume>
-    ): List<MovieResumeUi> {
-        return withContext(defaultDispatcher) {
-            domainMovies.map { mapDomainMovieResumedToUi(it) }
-        }
-    }
-
-    override suspend fun mapDomainMovieResumedToUi(
-        domainMovie: MovieResume
-    ): MovieResumeUi {
-        return MovieResumeUi(
-            id = domainMovie.id,
-            originalTitle = domainMovie.originalTitle,
-            posterPath = domainMovie.posterPath
+            knownFor = movieMapper.mapDomainMoviesListToUi(domainActor.knownFor)
         )
     }
 }

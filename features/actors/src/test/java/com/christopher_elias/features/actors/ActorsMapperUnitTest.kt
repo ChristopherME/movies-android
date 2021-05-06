@@ -1,9 +1,11 @@
 package com.christopher_elias.features.actors
 
+import com.christopher_elias.common.models.data.MovieResponse
+import com.christopher_elias.common.models.domain.Movie
+import com.christopher_elias.common.models.mapper.MovieMapper
+import com.christopher_elias.common.models.mapper.MovieMapperImpl
 import com.christopher_elias.features.actors.data_source.models.ActorsResponse
-import com.christopher_elias.features.actors.data_source.models.MovieResumeResponse
 import com.christopher_elias.features.actors.domain.models.Actor
-import com.christopher_elias.features.actors.domain.models.MovieResume
 import com.christopher_elias.features.actors.mapper.ActorsMapper
 import com.christopher_elias.features.actors.mapper.ActorsMapperImpl
 import com.christopher_elias.utils.resource_provider.ResourceProvider
@@ -26,18 +28,34 @@ class ActorsMapperUnitTest {
 
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
     private val mockResourceProvider: ResourceProvider = MockResourceProviderImpl()
+
+    private val movieMapper: MovieMapper = MovieMapperImpl(
+        defaultDispatcher = testCoroutineDispatcher
+    )
     private val mapper: ActorsMapper = ActorsMapperImpl(
         defaultDispatcher = testCoroutineDispatcher,
+        movieMapper = movieMapper,
         resourceProvider = mockResourceProvider
     )
 
     @Test
     fun `assert map REMOTE actors to DOMAIN actors is passing the right data`() = runBlockingTest {
         // remote fake data
-        val remoteActorResumedMovie = MovieResumeResponse(
+        val remoteActorResumedMovie = MovieResponse(
             id = 1,
-            originalTitle = "title",
-            posterPath = "path"
+            isAdultOnly = false,
+            popularity = 10.0,
+            voteAverage = 98.8,
+            voteCount = 2938,
+            image = "image",
+            backdropImage = "backDropImage",
+            title = "title",
+            overview = "",
+            releaseDate = "2020",
+            releaseDateAlternative = null,
+            originalTitle = "Title",
+            originalTitleAlternative = null,
+            originalLanguage = "EN"
         )
         val remoteActor = ActorsResponse(
             id = 1,
@@ -87,14 +105,8 @@ class ActorsMapperUnitTest {
 
         assertEquals(
             "Remote resumed movie originalTitle is not the same as the Domain resumed movie originalTitle",
-            remoteActorResumedMovie.originalTitle,
-            domainActorResumedMovie.originalTitle
-        )
-
-        assertEquals(
-            "Remote resumed movie posterPath is not the same as the Domain resumed movie posterPath",
-            remoteActorResumedMovie.posterPath,
-            domainActorResumedMovie.posterPath
+            remoteActorResumedMovie.title,
+            domainActorResumedMovie.title
         )
 
     }
@@ -103,15 +115,31 @@ class ActorsMapperUnitTest {
     fun `assert map DOMAIN actors to PRESENTATION UI actors is passing the right data`() =
         runBlockingTest {
             // domain fake data
-            val domainActorResumedMovie = MovieResume(
+            val domainActorResumedMovie = Movie(
                 id = 1,
-                originalTitle = "title",
-                posterPath = "path"
+                isAdultOnly = false,
+                popularity = 10.0,
+                voteAverage = 98.8,
+                voteCount = 2938,
+                image = "image",
+                backdropImage = "backDropImage",
+                title = "title",
+                overview = "overview",
+                releaseDate = "2020",
+                originalLanguage = "EN"
             )
-            val domainActorResumedMovie2 = MovieResume(
-                id = 1,
-                originalTitle = "title 2",
-                posterPath = "path2"
+            val domainActorResumedMovie2 = Movie(
+                id = 2,
+                isAdultOnly = false,
+                popularity = 10.0,
+                voteAverage = 98.8,
+                voteCount = 2938,
+                image = "image",
+                backdropImage = "backDropImage",
+                title = "title 2",
+                overview = "overview",
+                releaseDate = "2019",
+                originalLanguage = "EN"
             )
             val domainActor = Actor(
                 id = 1,
@@ -168,15 +196,15 @@ class ActorsMapperUnitTest {
             )
 
             assertEquals(
-                "Domain resumed movie originalTitle is not the same as the UI resumed movie originalTitle",
-                domainActorResumedMovie.originalTitle,
-                uiActorResumedMovie.originalTitle
+                "Domain resumed movie title is not the same as the UI resumed movie originalTitle",
+                domainActorResumedMovie.title,
+                uiActorResumedMovie.title
             )
 
             assertEquals(
                 "Domain resumed movie posterPath is not the same as the UI resumed movie posterPath",
-                domainActorResumedMovie.posterPath,
-                uiActorResumedMovie.posterPath
+                domainActorResumedMovie.image,
+                uiActorResumedMovie.image
             )
         }
 }

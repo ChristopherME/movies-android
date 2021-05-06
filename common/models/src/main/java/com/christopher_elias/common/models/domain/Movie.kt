@@ -19,6 +19,5 @@ data class Movie(
     val title: String,
     val overview: String,
     val releaseDate: String,
-    val originalTitle: String,
     val originalLanguage: String
 )

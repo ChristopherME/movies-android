@@ -140,9 +140,9 @@ class MovieRepositoryUnitTest {
                     firstDomainMovie.releaseDate
                 )
                 assertEquals(
-                    "Remote movie originalTitle field is not the same as the Domain movie",
-                    firstRemoteMovie.originalTitle,
-                    firstDomainMovie.originalTitle
+                    "Remote movie title field is not the same as the Domain movie",
+                    firstRemoteMovie.title,
+                    firstDomainMovie.title
                 )
                 assertEquals(
                     "Remote movie originalLanguage field is not the same as the Domain movie",

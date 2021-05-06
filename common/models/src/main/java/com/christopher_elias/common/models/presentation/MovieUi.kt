@@ -23,6 +23,5 @@ data class MovieUi(
     val title: String,
     val overview: String,
     val releaseDate: String,
-    val originalTitle: String,
     val originalLanguage: String
 ) : Parcelable
