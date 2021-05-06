@@ -30,6 +30,7 @@ object Features {
 
 object Common {
     val models = ":common:models"
+    val uiComponents = ":common:ui-components"
 }
 
 object Versions {
