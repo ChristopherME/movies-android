@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_feature_movies"
+    app:startDestination="@id/fragment_movies">
+
+    <fragment
+        android:id="@+id/fragment_movies"
+        android:label="Movies"
+        android:name="com.christopher_elias.features.movies.presentation.ui.movies_list.MovieListFragment"
+        tools:layout="@layout/fragment_movie_list">
+
+        <action
+            android:id="@+id/action_go_to_sheet_detail"
+            app:destination="@+id/bottom_sheet_fragment_movie_detail"
+            app:popUpTo="@id/fragment_movies" />
+
+    </fragment>
+
+    <dialog
+        android:id="@+id/bottom_sheet_fragment_movie_detail"
+        android:name="com.christopher_elias.features.movies.presentation.ui.movies_detail.MovieDetailBottomSheetFragment"
+        tools:layout="@layout/bottom_fragment_movie_detail" >
+        <argument android:name="movie"
+            app:argType="com.christopher_elias.common.models.presentation.MovieUi"/>
+    </dialog>
+
+</navigation>

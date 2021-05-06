@@ -1,7 +1,7 @@
 package com.christopher_elias.features.movies.presentation.ui.movies_list
 
 import com.christopher_elias.functional_programming.Failure
-import com.christopher_elias.features.movies.presentation.model.MovieUi
+import com.christopher_elias.common.models.presentation.MovieUi
 import com.christopher_elias.utils.OneTimeEvent
 
 /*

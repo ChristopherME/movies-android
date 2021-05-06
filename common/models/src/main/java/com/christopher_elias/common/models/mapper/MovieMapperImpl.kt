@@ -1,8 +1,8 @@
-package com.christopher_elias.features.movies.mapper
+package com.christopher_elias.common.models.mapper
 
-import com.christopher_elias.features.movies.data_source.model.MovieResponse
-import com.christopher_elias.features.movies.domain.model.Movie
-import com.christopher_elias.features.movies.presentation.model.MovieUi
+import com.christopher_elias.common.models.data.MovieResponse
+import com.christopher_elias.common.models.domain.Movie
+import com.christopher_elias.common.models.presentation.MovieUi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
  * Lima, Peru.
  */
 
-internal class MovieMapperImpl(
+class MovieMapperImpl(
     private val defaultDispatcher: CoroutineDispatcher
 ) : MovieMapper {
 
@@ -39,10 +39,12 @@ internal class MovieMapperImpl(
             voteCount = remoteMovie.voteCount,
             image = remoteMovie.image,
             backdropImage = remoteMovie.backdropImage,
-            title = remoteMovie.title,
+            title = remoteMovie.title ?: remoteMovie.originalTitle
+            ?: remoteMovie.originalTitleAlternative
+            ?: "No title found",
             overview = remoteMovie.overview,
-            releaseDate = remoteMovie.releaseDate,
-            originalTitle = remoteMovie.originalTitle,
+            releaseDate = remoteMovie.releaseDate ?: remoteMovie.releaseDateAlternative
+            ?: "No date found",
             originalLanguage = remoteMovie.originalLanguage
         )
     }
@@ -71,7 +73,6 @@ internal class MovieMapperImpl(
             title = domainMovie.title,
             overview = domainMovie.overview,
             releaseDate = domainMovie.releaseDate,
-            originalTitle = domainMovie.originalTitle,
             originalLanguage = domainMovie.originalLanguage
         )
     }

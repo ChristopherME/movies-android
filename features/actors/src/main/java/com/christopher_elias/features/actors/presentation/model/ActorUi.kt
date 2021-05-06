@@ -1,6 +1,7 @@
 package com.christopher_elias.features.actors.presentation.model
 
 import android.os.Parcelable
+import com.christopher_elias.common.models.presentation.MovieUi
 import kotlinx.parcelize.Parcelize
 
 /*
@@ -18,12 +19,5 @@ data class ActorUi(
     val popularity: Double,
     val profilePath: String,
     val moviesNames: String,
-    val knownFor: List<MovieResumeUi>
-) : Parcelable
-
-@Parcelize
-data class MovieResumeUi(
-    val id: Int,
-    val originalTitle: String,
-    val posterPath: String
+    val knownFor: List<MovieUi>
 ) : Parcelable

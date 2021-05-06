@@ -1,0 +1,18 @@
+apply from: "$rootDir/common-android-library.gradle"
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+    implementation Libs.androidxAppCompat
+    implementation Libs.androidXConstraintLayout
+    implementation Libs.androidxCore
+    implementation Libs.googleMaterial
+
+    api Libs.coil
+}

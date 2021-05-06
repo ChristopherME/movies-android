@@ -18,7 +18,7 @@ For the compose branch use the latest Android Studio on the canary channel.
 - Application entirely written in [Kotlin](https://kotlinlang.org)
 - Asynchronous processing using [Coroutines](https://kotlin.github.io/kotlinx.coroutines/)
 - Uses [Koin](https://github.com/InsertKoinIO/koin) for dependency injection
-- Uses [Actions](https://docs.github.com/en/actions/learn-github-actions)
+- Uses [Github Actions](https://docs.github.com/en/actions/learn-github-actions)
 - Uses [Jetpack Navigation](https://developer.android.com/guide/navigation) for navigation between modules
 - Slowly being migrated to use [Jetpack Compose](https://developer.android.com/jetpack/compose) on compose branch
 

@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import coil.load
 import com.christopher_elias.features.actors.R
 import com.christopher_elias.features.actors.databinding.FragmentActorDetailBinding
-import com.christopher_elias.features.actors.presentation.model.ActorUi
+import com.christopher_elias.features.actors.presentation.ui.actors_detail.adapter.ActorKnownForAdapter
 
 /*
  * Created by Christopher Elias on 2/05/2021
@@ -24,7 +25,7 @@ class ActorDetailFragment : Fragment(R.layout.fragment_actor_detail) {
     private val binding: FragmentActorDetailBinding
         get() = _binding!!
 
-    private val actor: ActorUi by lazy { requireArguments().getParcelable("actor")!! }
+    private val args: ActorDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,8 +42,14 @@ class ActorDetailFragment : Fragment(R.layout.fragment_actor_detail) {
     }
 
     private fun renderView() {
-        binding.tvActorName.text = actor.name
-        binding.ivActorProfileImage.load("https://image.tmdb.org/t/p/w185/${actor.profilePath}")
+        with(args.actor) {
+            binding.tvActorName.text = name
+
+            binding.ivActorProfileImage.load("https://image.tmdb.org/t/p/w185/$profilePath")
+
+            binding.rvMovies.setHasFixedSize(true)
+            binding.rvMovies.adapter = ActorKnownForAdapter(movies = knownFor)
+        }
     }
 
     override fun onDestroyView() {

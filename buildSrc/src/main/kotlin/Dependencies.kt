@@ -28,6 +28,11 @@ object Features {
     val actors = ":features:actors"
 }
 
+object Common {
+    val models = ":common:models"
+    val uiComponents = ":common:ui-components"
+}
+
 object Versions {
 
     const val KOTLIN_VERSION = "1.4.32"
@@ -36,6 +41,7 @@ object Versions {
 
     const val FRAGMENT_VERSION = "1.3.3"
     const val LIFECYCLE_VERSION = "2.3.1"
+    const val JETPACK_NAVIGATION_VERSION = "2.3.5"
 
     const val RETROFIT_VERSION = "2.9.0"
     const val LOGGING_INTERCEPTOR_VERSION = "4.9.0"
@@ -56,7 +62,6 @@ object Versions {
     const val ANDROIDX_CONSTRAINT_LAYOUT_VERSION = "2.0.4"
 
     const val DI_KOIN_VERSION = "3.0.1"
-
 
 }
 
@@ -98,6 +103,11 @@ object Libs {
     // Fragments
     val fragments = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_VERSION}"
     val viewModels = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE_VERSION}"
+
+    //Navigation
+    val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.JETPACK_NAVIGATION_VERSION}"
+    val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.JETPACK_NAVIGATION_VERSION}"
+    val navigationSafeArgsPlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.JETPACK_NAVIGATION_VERSION}"
 
     // ||
     // TESTING

@@ -1,12 +1,12 @@
-package com.christopher_elias.features.movies.presentation.ui.movies_list.adapter
+package com.christopher_elias.common.ui_components
 
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.christopher_elias.features.movies.databinding.ItemMovieBinding
+import com.christopher_elias.common.ui_components.databinding.ItemMoviePosterBinding
 
 /*
- * Created by Christopher Elias on 3/05/2021
+ * Created by Christopher Elias on 5/05/2021
  * christopher.mike.96@gmail.com
  *
  * Loop Ideas
@@ -16,8 +16,8 @@ import com.christopher_elias.features.movies.databinding.ItemMovieBinding
 /**
  * @see [https://developers.themoviedb.org/3/configuration/get-api-configuration]
  */
-class MovieListViewHolder(
-    val binding: ItemMovieBinding
+class MoviePosterViewHolder(
+    val binding: ItemMoviePosterBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(path: String) {

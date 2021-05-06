@@ -38,6 +38,7 @@ val featureActorsModule = module {
     factory<ActorsMapper> {
         ActorsMapperImpl(
             defaultDispatcher = get(named("defaultDispatcher")),
+            movieMapper = get(),
             resourceProvider = get()
         )
     }

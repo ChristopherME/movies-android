@@ -1,6 +1,6 @@
 package com.christopher_elias.features.movies.data
 
-import com.christopher_elias.features.movies.data_source.model.MovieResponse
+import com.christopher_elias.common.models.data.MovieResponse
 import com.christopher_elias.network.models.base.ResponseItems
 import com.christopher_elias.test_shared.file.FileReaderUtil
 import com.squareup.moshi.JsonAdapter

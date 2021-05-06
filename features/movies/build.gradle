@@ -1,5 +1,6 @@
 apply from: "$rootDir/common-android-library.gradle"
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
 
@@ -9,6 +10,9 @@ android {
 }
 
 dependencies {
+    implementation project(Common.models)
+    implementation project(Common.uiComponents)
+    
     implementation project(Modules.functionalProgramming)
 
     implementation project(Core.views)
@@ -18,8 +22,9 @@ dependencies {
 
     implementation Libs.koinAndroidx
     implementation Libs.coroutinesAndroid
-    implementation Libs.coil
     implementation Libs.timber
+    implementation Libs.navigationFragment
+    implementation Libs.navigationUi
 
     testImplementation Libs.testMockk
     testImplementation Libs.coroutinesTest

@@ -1,0 +1,10 @@
+apply from: "$rootDir/common-android-library.gradle"
+
+dependencies {
+
+    implementation Libs.moshi
+    implementation Libs.coroutinesCore
+
+    testImplementation Libs.testMockk
+    testImplementation Libs.coroutinesTest
+}

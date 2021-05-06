@@ -31,33 +31,39 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
 }
 
 dependencies {
+    implementation Libs.kotlin
+    implementation Libs.koinAndroidx
+
+    implementation Libs.timber
 
     implementation project(Modules.utils)
 
     implementation project(Core.network)
     implementation project(Core.views)
 
+    implementation project(Common.models)
+
+    implementation Libs.navigationFragment
+    implementation Libs.navigationUi
+
     implementation project(Features.movies)
     implementation project(Features.actors)
-
-    implementation Libs.kotlin
-    implementation Libs.androidxCore
-    implementation Libs.androidxAppCompat
-    implementation Libs.googleMaterial
-    implementation Libs.androidXConstraintLayout
-
-    implementation Libs.koinAndroidx
-    implementation Libs.timber
 
     debugImplementation Libs.leakCanary
 

@@ -1,9 +1,9 @@
-package com.christopher_elias.features.movies
+package com.christopher_elias.common.models
 
-import com.christopher_elias.features.movies.data_source.model.MovieResponse
-import com.christopher_elias.features.movies.domain.model.Movie
-import com.christopher_elias.features.movies.mapper.MovieMapper
-import com.christopher_elias.features.movies.mapper.MovieMapperImpl
+import com.christopher_elias.common.models.data.MovieResponse
+import com.christopher_elias.common.models.domain.Movie
+import com.christopher_elias.common.models.mapper.MovieMapper
+import com.christopher_elias.common.models.mapper.MovieMapperImpl
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.runBlockingTest
@@ -100,8 +100,8 @@ class MovieMapperUnitTest {
         )
         assertEquals(
             "Remote movie originalTitle field is not the same as the Domain movie",
-            remoteMovie.originalTitle,
-            domainMovie.originalTitle
+            remoteMovie.title,
+            domainMovie.title
         )
         assertEquals(
             "Remote movie originalLanguage field is not the same as the Domain movie",
@@ -124,7 +124,6 @@ class MovieMapperUnitTest {
             title = "Movie",
             overview = "From remote service",
             releaseDate = "12/12/2012",
-            originalTitle = "Original",
             originalLanguage = "US"
         )
         val domainMovies = listOf(domainMovie)
@@ -185,9 +184,9 @@ class MovieMapperUnitTest {
             uiMovie.releaseDate
         )
         assertEquals(
-            "Domain movie originalTitle field is not the same as The UI movie",
-            domainMovie.originalTitle,
-            uiMovie.originalTitle
+            "Domain movie title field is not the same as The UI movie",
+            domainMovie.title,
+            uiMovie.title
         )
         assertEquals(
             "Domain movie originalLanguage field is not the same as The UI movie",
