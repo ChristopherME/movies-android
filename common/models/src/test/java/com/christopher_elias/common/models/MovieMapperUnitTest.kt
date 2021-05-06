@@ -74,14 +74,14 @@ class MovieMapperUnitTest {
             remoteMovie.voteCount,
             domainMovie.voteCount
         )
+        assertNull(
+            "Remote movie image field is null",
+            remoteMovie.image
+        )
         assertEquals(
             "Remote movie backdropImage field is not the same as the Domain movie",
             remoteMovie.backdropImage,
             domainMovie.image
-        )
-        assertNull(
-            "Remote movie backdropImage field is null",
-            remoteMovie.backdropImage
         )
         assertEquals(
             "Remote movie title field is not the same as the Domain movie",
