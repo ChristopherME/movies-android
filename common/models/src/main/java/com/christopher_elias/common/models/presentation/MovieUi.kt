@@ -19,7 +19,6 @@ data class MovieUi(
     val voteAverage: Double,
     val voteCount: Int,
     val image: String,
-    val backdropImage: String,
     val title: String,
     val overview: String,
     val releaseDate: String,
