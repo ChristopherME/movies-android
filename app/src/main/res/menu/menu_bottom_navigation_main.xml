@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_feature_movies"
+        android:icon="@drawable/ic_film"
+        android:title="@string/menu_option_films" />
+
+    <item
+        android:id="@+id/nav_feature_actors"
+        android:icon="@drawable/ic_star"
+        android:title="@string/menu_option_actors" />
+
+</menu>
