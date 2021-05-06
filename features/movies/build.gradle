@@ -10,6 +10,7 @@ android {
 }
 
 dependencies {
+    implementation project(Common.models)
     implementation project(Modules.functionalProgramming)
 
     implementation project(Core.views)

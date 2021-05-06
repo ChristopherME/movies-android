@@ -1,4 +1,4 @@
-package com.christopher_elias.features.movies.data_source.model
+package com.christopher_elias.common.models.data
 
 import com.squareup.moshi.Json
 

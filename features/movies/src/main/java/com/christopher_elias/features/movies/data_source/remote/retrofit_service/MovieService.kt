@@ -1,9 +1,8 @@
 package com.christopher_elias.features.movies.data_source.remote.retrofit_service
 
-import com.christopher_elias.features.movies.data_source.model.MovieResponse
+import com.christopher_elias.common.models.data.MovieResponse
 import com.christopher_elias.network.models.base.ResponseItems
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 /*

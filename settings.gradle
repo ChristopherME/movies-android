@@ -7,3 +7,4 @@ include ':core:network'
 include ':functional-programming'
 include ':app'
 rootProject.name = "Movies"
+include ':common:models'

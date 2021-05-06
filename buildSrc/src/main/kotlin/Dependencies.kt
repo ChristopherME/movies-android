@@ -28,6 +28,10 @@ object Features {
     val actors = ":features:actors"
 }
 
+object Common {
+    val models = ":common:models"
+}
+
 object Versions {
 
     const val KOTLIN_VERSION = "1.4.32"

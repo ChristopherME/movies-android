@@ -1,8 +1,8 @@
-package com.christopher_elias.features.movies.mapper
+package com.christopher_elias.common.models.mapper
 
-import com.christopher_elias.features.movies.data_source.model.MovieResponse
-import com.christopher_elias.features.movies.domain.model.Movie
-import com.christopher_elias.features.movies.presentation.model.MovieUi
+import com.christopher_elias.common.models.data.MovieResponse
+import com.christopher_elias.common.models.domain.Movie
+import com.christopher_elias.common.models.presentation.MovieUi
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
  * Lima, Peru.
  */
 
-internal class MovieMapperImpl(
+class MovieMapperImpl(
     private val defaultDispatcher: CoroutineDispatcher
 ) : MovieMapper {
 

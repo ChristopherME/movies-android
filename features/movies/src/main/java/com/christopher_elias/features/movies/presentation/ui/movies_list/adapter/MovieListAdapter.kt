@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import com.christopher_elias.features.movies.databinding.ItemMovieBinding
-import com.christopher_elias.features.movies.presentation.model.MovieUi
+import com.christopher_elias.common.models.presentation.MovieUi
 import com.christopher_elias.features.movies.presentation.ui.movies_list.MovieListFragmentDirections
 
 /*

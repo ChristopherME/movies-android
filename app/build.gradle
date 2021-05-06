@@ -57,6 +57,8 @@ dependencies {
     implementation project(Core.network)
     implementation project(Core.views)
 
+    implementation project(Common.models)
+
     implementation Libs.navigationFragment
     implementation Libs.navigationUi
 

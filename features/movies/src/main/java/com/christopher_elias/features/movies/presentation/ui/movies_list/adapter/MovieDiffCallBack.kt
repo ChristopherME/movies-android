@@ -1,7 +1,7 @@
 package com.christopher_elias.features.movies.presentation.ui.movies_list.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.christopher_elias.features.movies.presentation.model.MovieUi
+import com.christopher_elias.common.models.presentation.MovieUi
 
 /*
  * Created by Christopher Elias on 3/05/2021
