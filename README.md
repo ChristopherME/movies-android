@@ -1,6 +1,6 @@
 ![GitHub Cards Preview](https://github.com/ChristopherME/movies-android/blob/master/art/movies_app.jpg)
 
-![build](https://github.com/ChristopherME/movies-android/actions/workflows/workflow.yml/badge.svg?branch=master)
+[![build](https://github.com/ChristopherME/movies-android/workflows/Test%20and%20build/badge.svg)](https://github.com/ChristopherME/movies-android/actions?branch=master)
 
 # Movies
 
