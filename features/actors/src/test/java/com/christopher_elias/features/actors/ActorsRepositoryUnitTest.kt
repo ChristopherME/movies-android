@@ -56,8 +56,7 @@ class ActorsRepositoryUnitTest {
         middlewareProvider = middlewareProvider,
         ioDispatcher = testDispatcher,
         errorAdapter = remoteErrorAdapter,
-        actorsService = actorsService,
-        tmdbKey = ""
+        actorsService = actorsService
     )
 
     private val mockResourceProvider: ResourceProvider = MockResourceProviderImpl()
@@ -88,7 +87,7 @@ class ActorsRepositoryUnitTest {
         )
 
         coEvery {
-            actorsService.getActors(apiKey = any(), language = any(), page = any())
+            actorsService.getActors(language = any(), page = any())
         } returns ResponseItems(remoteActors)
 
         runBlockingTest {
@@ -181,7 +180,7 @@ class ActorsRepositoryUnitTest {
             }
 
             // Verify the actor service was not called this has returned a failure.
-            coVerify(exactly = 0) { actorsService.getActors(any(), any(), any()) }
+            coVerify(exactly = 0) { actorsService.getActors(any(), any()) }
         }
     }
 
@@ -197,7 +196,7 @@ class ActorsRepositoryUnitTest {
         )
 
         coEvery {
-            actorsService.getActors(any(), any(), any())
+            actorsService.getActors(any(), any())
         } throws HttpException(Response.error<Any>(400, errorBody))
 
         runBlockingTest {

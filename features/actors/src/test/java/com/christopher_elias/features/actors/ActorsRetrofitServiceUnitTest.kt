@@ -46,7 +46,6 @@ class ActorsRetrofitServiceUnitTest {
         // This shouldn't have to throw an error if the MovieResponse
         // is well mapped with the server response mocked in [setUpMockWebServerDispatcher]
         val actors = actorsService.getActors(
-            apiKey = "YOUR_API_KEY",
             language = "en-US",
             page = 1
         )
