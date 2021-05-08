@@ -69,7 +69,7 @@ class ActorsRetrofitServiceUnitTest {
         override fun dispatch(request: RecordedRequest): MockResponse {
             println("BASE_URL${request.path}")
             return when (request.path) {
-                "/person/popular?api_key=YOUR_API_KEY&language=en-US&page=1" -> {
+                "/person/popular?language=en-US&page=1" -> {
                     MockResponse()
                         .setResponseCode(200)
                         .setBody(FileReaderUtil.kotlinReadFileWithNewLineFromResources("actors.json"))

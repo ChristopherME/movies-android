@@ -69,7 +69,7 @@ class MovieRetrofitServiceUnit {
         override fun dispatch(request: RecordedRequest): MockResponse {
             println("BASE_URL${request.path}")
             return when (request.path) {
-                "/movie/top_rated?api_key=YOUR_API_KEY&language=en-US&page=1" -> {
+                "/movie/top_rated?language=en-US&page=1" -> {
                     MockResponse()
                         .setResponseCode(200)
                         .setBody(FileReaderUtil.kotlinReadFileWithNewLineFromResources("movies.json"))
