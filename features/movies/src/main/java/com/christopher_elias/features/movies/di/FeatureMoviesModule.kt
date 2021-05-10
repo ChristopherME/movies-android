@@ -28,8 +28,7 @@ val featureMoviesModule = module {
             middlewareProvider = get(),
             ioDispatcher = get(named("ioDispatcher")),
             adapter = get(),
-            movieService = get(),
-            tmdbKey = get(named("TMDB_KEY"))
+            movieService = get()
         )
     }
 

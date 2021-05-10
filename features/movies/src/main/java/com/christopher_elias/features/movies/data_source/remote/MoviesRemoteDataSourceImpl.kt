@@ -24,8 +24,7 @@ internal class MoviesRemoteDataSourceImpl(
     private val middlewareProvider: MiddlewareProvider,
     private val ioDispatcher: CoroutineDispatcher,
     private val adapter: JsonAdapter<ResponseError>,
-    private val movieService: MovieService,
-    private val tmdbKey: String
+    private val movieService: MovieService
 ) : MoviesRemoteDataSource {
 
     override suspend fun getMovies(): Either<Failure, List<MovieResponse>> {
@@ -35,7 +34,6 @@ internal class MoviesRemoteDataSourceImpl(
             adapter = adapter,
             retrofitCall = {
                 movieService.getTopRatedMovies(
-                    apiKey = tmdbKey,
                     language = "en-US",
                     page = 1
                 )

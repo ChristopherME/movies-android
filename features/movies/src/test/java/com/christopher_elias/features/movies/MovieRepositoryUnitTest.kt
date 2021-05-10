@@ -50,8 +50,7 @@ class MovieRepositoryUnitTest {
         middlewareProvider = middlewareProvider,
         ioDispatcher = testDispatcher,
         adapter = remoteErrorAdapter,
-        movieService = movieService,
-        tmdbKey = ""
+        movieService = movieService
     )
 
     private val mapper: MovieMapper = MovieMapperImpl(
@@ -74,7 +73,7 @@ class MovieRepositoryUnitTest {
         )
 
         coEvery {
-            movieService.getTopRatedMovies(apiKey = any(), language = any(), page = any())
+            movieService.getTopRatedMovies(language = any(), page = any())
         } returns ResponseItems(remoteMovies)
 
         runBlockingTest {
@@ -179,7 +178,7 @@ class MovieRepositoryUnitTest {
             }
 
             // Verify the movie service was not called this has returned a failure.
-            coVerify(exactly = 0) { movieService.getTopRatedMovies(any(), any(), any()) }
+            coVerify(exactly = 0) { movieService.getTopRatedMovies(any(), any()) }
         }
     }
 
@@ -195,7 +194,7 @@ class MovieRepositoryUnitTest {
         )
 
         coEvery {
-            movieService.getTopRatedMovies(any(), any(), any())
+            movieService.getTopRatedMovies(any(), any())
         } throws HttpException(Response.error<Any>(400, errorBody))
 
         runBlockingTest {

@@ -30,8 +30,7 @@ val featureActorsModule = module {
             middlewareProvider = get(),
             ioDispatcher = get(named("ioDispatcher")),
             errorAdapter = get(),
-            actorsService = get(),
-            tmdbKey = get(named("TMDB_KEY"))
+            actorsService = get()
         )
     }
 
