@@ -4,20 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import com.christopher_elias.features.movies.R
 import com.christopher_elias.features.movies.databinding.FragmentMovieListBinding
-import com.christopher_elias.common.models.presentation.MovieUi
-import com.christopher_elias.features.movies.presentation.ui.movies_detail.MovieDetailBottomSheetFragment
 import com.christopher_elias.features.movies.presentation.ui.movies_list.adapter.MovieListAdapter
-import com.christopher_elias.utils.consumeOnce
-import kotlinx.coroutines.flow.collect
+import com.christopher_elias.features.movies.presentation.ui.movies_list.adapter.MovieLoadStateAdapter
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 /*
  * Created by Christopher Elias on 26/04/2021
@@ -34,6 +31,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
         get() = _binding!!
 
     private val moviesViewModel: MovieListViewModel by viewModel()
+    private var adapter: MovieListAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,53 +49,46 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
     }
 
     private fun initView() {
-        binding.rvMovies.adapter = MovieListAdapter()
+        adapter = MovieListAdapter()
+
+        binding.rvMovies.adapter = adapter?.withLoadStateHeaderAndFooter(
+            header = MovieLoadStateAdapter { adapter?.retry() },
+            footer = MovieLoadStateAdapter { adapter?.retry() }
+        )
+
+        adapter?.addLoadStateListener { loadState ->
+            val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter?.itemCount == 0
+            showEmptyList(isEmpty = isListEmpty)
+
+            // Only shows the list if refresh succeeds.
+            binding.rvMovies.isVisible = loadState.source.refresh is LoadState.NotLoading
+            // Show loading spinner during initial load or refresh.
+            binding.progressBarMovies.isVisible = loadState.source.refresh is LoadState.Loading
+            // Show the retry state if initial load or refresh fails.
+            binding.btnMoviesRetry.isVisible = loadState.source.refresh is LoadState.Error
+        }
+
+        binding.btnMoviesRetry.setOnClickListener { adapter?.retry() }
+
     }
 
     private fun collectUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            moviesViewModel.uiState.collect { state ->
-                renderUiState(state)
+            moviesViewModel.getMovies().collectLatest { movies ->
+                // (binding.rvMovies.adapter as MovieListAdapter)
+                adapter?.submitData(movies)
             }
         }
     }
 
-    private fun renderUiState(state: MovieListUiState) {
-        with(state) {
-            // Progress
-            binding.progressBarMovies.isVisible = isLoading
-
-            // Bind movies.
-            (binding.rvMovies.adapter as MovieListAdapter)
-                .submitList(movies)
-
-            // Empty view
-            binding.tvMoviesEmpty.isVisible = !isLoading && movies.isEmpty()
-
-            // Display error if any. Only once.
-            error?.let {
-                it.consumeOnce { failure ->
-                    Toast.makeText(
-                        requireContext(),
-                        "$failure",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
-        }
-    }
-
-    private fun onMovieClicked(movie: MovieUi) {
-        Timber.d("Movie: $movie")
-        MovieDetailBottomSheetFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable("movie", movie)
-            }
-        }.show(childFragmentManager, "MovieDetail")
+    private fun showEmptyList(isEmpty: Boolean) {
+        binding.rvMovies.isVisible = !isEmpty
+        binding.tvMoviesEmpty.isVisible = isEmpty
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        adapter = null
         _binding = null
     }
 }

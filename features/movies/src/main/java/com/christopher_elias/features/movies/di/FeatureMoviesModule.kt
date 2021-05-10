@@ -25,9 +25,6 @@ val featureMoviesModule = module {
 
     factory<MoviesRemoteDataSource> {
         MoviesRemoteDataSourceImpl(
-            middlewareProvider = get(),
-            ioDispatcher = get(named("ioDispatcher")),
-            adapter = get(),
             movieService = get()
         )
     }
