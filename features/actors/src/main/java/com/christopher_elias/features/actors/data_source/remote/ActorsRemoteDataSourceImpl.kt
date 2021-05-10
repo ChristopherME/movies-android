@@ -23,8 +23,7 @@ internal class ActorsRemoteDataSourceImpl(
     private val middlewareProvider: MiddlewareProvider,
     private val ioDispatcher: CoroutineDispatcher,
     private val errorAdapter: JsonAdapter<ResponseError>,
-    private val actorsService: ActorsService,
-    private val tmdbKey: String,
+    private val actorsService: ActorsService
 ) : ActorsRemoteDataSource {
 
     override suspend fun getActors(): Either<Failure, List<ActorsResponse>> {
@@ -34,7 +33,6 @@ internal class ActorsRemoteDataSourceImpl(
             adapter = errorAdapter,
             retrofitCall = {
                 actorsService.getActors(
-                    apiKey = tmdbKey,
                     language = "en-US",
                     page = 1
                 )

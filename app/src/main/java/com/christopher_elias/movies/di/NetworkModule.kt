@@ -7,6 +7,7 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -24,7 +25,7 @@ import java.util.concurrent.TimeUnit
 val networkModule = module {
     single { HttpClientFactory() }
     single { provideOkHttpBuilder(httpClientFactory = get()) }
-    single { provideClient(clientBuilder = get()) }
+    single { provideClient(clientBuilder = get(), apiKey = get(named("TMDB_KEY"))) }
     single { provideRetrofitBuilder(okHttpClient = get()) }
     single { provideMoshi() }
     single { provideJsonErrorAdapter(moshi = get()) }
@@ -37,9 +38,17 @@ internal fun provideOkHttpBuilder(
 }
 
 internal fun provideClient(
-    clientBuilder: OkHttpClient.Builder
+    clientBuilder: OkHttpClient.Builder,
+    apiKey: String
 ): OkHttpClient {
     clientBuilder
+        .addInterceptor { chain ->
+            val request = chain.request().newBuilder()
+            val originalHttpUrl = chain.request().url
+            val url = originalHttpUrl.newBuilder().addQueryParameter("api_key", apiKey).build()
+            request.url(url)
+            return@addInterceptor chain.proceed(request.build())
+        }
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
     if (BuildConfig.DEBUG) {

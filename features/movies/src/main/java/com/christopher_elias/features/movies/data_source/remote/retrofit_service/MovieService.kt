@@ -24,7 +24,6 @@ internal interface MovieService {
      */
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(
-        @Query("api_key") apiKey: String,
         @Query("language") language: String,
         @Query("page") page: Int
     ): ResponseItems<MovieResponse>

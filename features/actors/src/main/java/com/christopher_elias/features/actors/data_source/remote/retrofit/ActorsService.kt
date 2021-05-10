@@ -17,7 +17,6 @@ internal interface ActorsService {
 
     @GET("person/popular")
     suspend fun getActors(
-        @Query("api_key") apiKey: String,
         @Query("language") language: String,
         @Query("page") page: Int
     ): ResponseItems<ActorsResponse>
