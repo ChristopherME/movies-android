@@ -1,15 +1,13 @@
 package com.christopher_elias.features.movies.data_source.remote
 
-import com.christopher_elias.functional_programming.Either
-import com.christopher_elias.functional_programming.Failure
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.christopher_elias.features.movies.data.data_source.MoviesRemoteDataSource
 import com.christopher_elias.common.models.data.MovieResponse
 import com.christopher_elias.features.movies.data_source.remote.retrofit_service.MovieService
-import com.christopher_elias.network.middleware.provider.MiddlewareProvider
-import com.christopher_elias.network.models.base.ResponseError
-import com.christopher_elias.network.utils.call
-import com.squareup.moshi.JsonAdapter
-import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import timber.log.Timber
 
 /*
  * Created by Christopher Elias on 26/04/2021
@@ -20,24 +18,22 @@ import kotlinx.coroutines.CoroutineDispatcher
  */
 
 
+const val NETWORK_PAGE_SIZE = 25
+
 internal class MoviesRemoteDataSourceImpl(
-    private val middlewareProvider: MiddlewareProvider,
-    private val ioDispatcher: CoroutineDispatcher,
-    private val adapter: JsonAdapter<ResponseError>,
     private val movieService: MovieService
 ) : MoviesRemoteDataSource {
 
-    override suspend fun getMovies(): Either<Failure, List<MovieResponse>> {
-        return call(
-            middleWares = middlewareProvider.getAll(),
-            ioDispatcher = ioDispatcher,
-            adapter = adapter,
-            retrofitCall = {
-                movieService.getTopRatedMovies(
-                    language = "en-US",
-                    page = 1
-                )
+    override fun getMovies(): Flow<PagingData<MovieResponse>> {
+        Timber.d("Request movies")
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                MoviesPagingSource(service = movieService)
             }
-        ).let { response -> response.mapSuccess { responseItems -> responseItems.results } }
+        ).flow
     }
 }

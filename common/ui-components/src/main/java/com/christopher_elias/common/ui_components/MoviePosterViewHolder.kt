@@ -20,10 +20,12 @@ class MoviePosterViewHolder(
     val binding: ItemMoviePosterBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(path: String) {
-        binding.ivMoviePoster.load("https://image.tmdb.org/t/p/w500/$path") {
-            crossfade(durationMillis = 2000)
-            transformations(RoundedCornersTransformation(12.5f))
+    fun bind(path: String?) {
+        path?.let {
+            binding.ivMoviePoster.load("https://image.tmdb.org/t/p/w500/$it") {
+                crossfade(durationMillis = 2000)
+                transformations(RoundedCornersTransformation(12.5f))
+            }
         }
     }
 }

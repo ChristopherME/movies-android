@@ -25,6 +25,7 @@ dependencies {
     implementation Libs.timber
     implementation Libs.navigationFragment
     implementation Libs.navigationUi
+    implementation Libs.paging
 
     testImplementation Libs.testMockk
     testImplementation Libs.coroutinesTest

@@ -2,6 +2,7 @@
 <resources>
     <string name="feature_movie_tv_empty">No movies found. Try again later.</string>
     <string name="feature_movie_tv_trends">Trends</string>
+    <string name="feature_movie_btn_retry">Retry</string>
 
     <!-- Short detail-->
     <string name="feature_movie_detail_btn_play">Play</string>

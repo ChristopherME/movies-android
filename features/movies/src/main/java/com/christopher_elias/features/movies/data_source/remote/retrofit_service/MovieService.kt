@@ -13,7 +13,7 @@ import retrofit2.http.Query
  * Lima, Peru.
  */
 
-internal interface MovieService {
+interface MovieService {
 
     /**
      * @return List of [MovieResponse]
