@@ -24,10 +24,6 @@ class MovieListViewModel(
     private val mapper: MovieMapper
 ) : ViewModel() {
 
-    init {
-        getMovies()
-    }
-
     fun getMovies(): Flow<PagingData<MovieUi>> {
         return moviesRepository.getMovies()
             .map { pagingData ->

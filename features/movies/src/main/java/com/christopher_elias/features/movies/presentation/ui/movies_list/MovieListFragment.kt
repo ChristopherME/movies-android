@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import com.christopher_elias.features.movies.R
 import com.christopher_elias.features.movies.databinding.FragmentMovieListBinding
@@ -56,17 +57,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
             footer = MovieLoadStateAdapter { adapter?.retry() }
         )
 
-        adapter?.addLoadStateListener { loadState ->
-            val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter?.itemCount == 0
-            showEmptyList(isEmpty = isListEmpty)
-
-            // Only shows the list if refresh succeeds.
-            binding.rvMovies.isVisible = loadState.source.refresh is LoadState.NotLoading
-            // Show loading spinner during initial load or refresh.
-            binding.progressBarMovies.isVisible = loadState.source.refresh is LoadState.Loading
-            // Show the retry state if initial load or refresh fails.
-            binding.btnMoviesRetry.isVisible = loadState.source.refresh is LoadState.Error
-        }
+        adapter?.addLoadStateListener { loadState -> renderUi(loadState) }
 
         binding.btnMoviesRetry.setOnClickListener { adapter?.retry() }
 
@@ -75,15 +66,23 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
     private fun collectUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             moviesViewModel.getMovies().collectLatest { movies ->
-                // (binding.rvMovies.adapter as MovieListAdapter)
                 adapter?.submitData(movies)
             }
         }
     }
 
-    private fun showEmptyList(isEmpty: Boolean) {
-        binding.rvMovies.isVisible = !isEmpty
-        binding.tvMoviesEmpty.isVisible = isEmpty
+    private fun renderUi(loadState: CombinedLoadStates) {
+        val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter?.itemCount == 0
+
+        binding.rvMovies.isVisible = !isListEmpty
+        binding.tvMoviesEmpty.isVisible = isListEmpty
+
+        // Only shows the list if refresh succeeds.
+        binding.rvMovies.isVisible = loadState.source.refresh is LoadState.NotLoading
+        // Show loading spinner during initial load or refresh.
+        binding.progressBarMovies.isVisible = loadState.source.refresh is LoadState.Loading
+        // Show the retry state if initial load or refresh fails.
+        binding.btnMoviesRetry.isVisible = loadState.source.refresh is LoadState.Error
     }
 
     override fun onDestroyView() {
