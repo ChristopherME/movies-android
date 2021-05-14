@@ -26,11 +26,11 @@ class MovieListProcessorHolder(
 
     override fun processAction(action: MovieListAction): Flow<MovieListResult> {
         return flow {
-            // First send a loading result
-            emit(MovieListResult.Loading)
             // Get the items from repository
             when (action) {
                 MovieListAction.LoadMoviesAction -> {
+                    // First send a loading result
+                    emit(MovieListResult.Loading)
                     val response: Either<Failure, List<MovieUi>> =
                         moviesRepository.getMovies()
                             .coMapSuccess { domainMovies ->
