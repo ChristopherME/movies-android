@@ -8,7 +8,15 @@ Movies is a simple project to study and play with some android components, archi
 
 ## Tech Stack
 
-This project uses feature modularization architecture, with some modules using MVVM and others just MVI.
+This project uses [feature modularization architecture](https://proandroiddev.com/intro-to-app-modularization-42411e4c421e).
+The movies feature module uses MVI as software design patter for presentation layer, and the actors feature module uses MVVM.
+You can checkout how was the migration from MVVM to MVI in this [pull request](https://github.com/ChristopherME/movies-android/pull/19).
+
+## Medium blogs
+
+I write about the process of coding this project in the following blogss:
+ - [Understanding MVVM](https://christopher-elias.medium.com/understanding-mvvm-pattern-for-android-in-2021-98b155b37b54)
+ - [Integrating Paging3](https://christopher-elias.medium.com/pagination-in-android-with-paging-3-retrofit-and-kotlin-flow-2c2454ff776e)
 
 ## Development setup
 
@@ -22,7 +30,7 @@ For the compose branch use the latest Android Studio on the canary channel.
 - Uses [Koin](https://github.com/InsertKoinIO/koin) for dependency injection
 - Uses [Github Actions](https://docs.github.com/en/actions/learn-github-actions)
 - Uses [Jetpack Navigation](https://developer.android.com/guide/navigation) for navigation between modules
-- Slowly being migrated to use [Jetpack Compose](https://developer.android.com/jetpack/compose) on compose branch
+- Uses [Paging3](https://developer.android.com/topic/libraries/architecture/paging/v3-overview), see this [PR](https://github.com/ChristopherME/movies-android/pull/17).
 
 ### API keys
 
