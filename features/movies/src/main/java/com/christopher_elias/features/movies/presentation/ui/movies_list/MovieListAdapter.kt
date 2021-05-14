@@ -1,4 +1,4 @@
-package com.christopher_elias.features.movies.presentation.ui.movies_list.adapter
+package com.christopher_elias.features.movies.presentation.ui.movies_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.ListAdapter
 import com.christopher_elias.common.models.presentation.MovieUi
 import com.christopher_elias.common.ui_components.MoviePosterViewHolder
 import com.christopher_elias.common.ui_components.databinding.ItemMoviePosterBinding
-import com.christopher_elias.features.movies.presentation.ui.movies_list.MovieListFragmentDirections
 
 /*
  * Created by Christopher Elias on 26/04/2021
