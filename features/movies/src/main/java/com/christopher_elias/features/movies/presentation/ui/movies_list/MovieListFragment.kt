@@ -13,6 +13,7 @@ import com.christopher_elias.features.movies.databinding.FragmentMovieListBindin
 import com.christopher_elias.features.movies.mvi_core.MviView
 import com.christopher_elias.features.movies.presentation.ui.movies_list.intent.MovieListIntent
 import com.christopher_elias.utils.consumeOnce
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -27,6 +28,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 
 @FlowPreview
+@ExperimentalCoroutinesApi
 class MovieListFragment : Fragment(R.layout.fragment_movie_list),
     MviView<MovieListIntent, MovieListUiState> {
 
