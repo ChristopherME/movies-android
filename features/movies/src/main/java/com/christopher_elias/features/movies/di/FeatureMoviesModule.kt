@@ -6,6 +6,7 @@ import com.christopher_elias.features.movies.data_source.remote.MoviesRemoteData
 import com.christopher_elias.features.movies.data_source.remote.retrofit_service.MovieService
 import com.christopher_elias.features.movies.domain.MoviesRepository
 import com.christopher_elias.features.movies.presentation.ui.movies_list.MovieListViewModel
+import com.christopher_elias.features.movies.presentation.ui.movies_list.processor.MovieListProcessorHolder
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -34,7 +35,9 @@ val featureMoviesModule = module {
 
     factory<MoviesRepository> { MoviesRepositoryImpl(remoteDataSource = get(), mapper = get()) }
 
-    viewModel { MovieListViewModel(moviesRepository = get(), mapper = get()) }
+    factory { MovieListProcessorHolder(moviesRepository = get(), moviesMapper = get()) }
+
+    viewModel { MovieListViewModel(actionProcessorHolder = get()) }
 
 }
 
