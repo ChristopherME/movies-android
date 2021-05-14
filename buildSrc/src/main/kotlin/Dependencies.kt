@@ -1,6 +1,6 @@
 object Releases {
-    val versionCode = 2
-    val versionName = "0.0.2"
+    val versionCode = 3
+    val versionName = "0.1.0"
 }
 
 object DefaultConfig {
