@@ -60,6 +60,7 @@ object Versions {
     const val ANDROIDX_APP_COMPAT_VERSION = "1.2.0"
     const val GOOGLE_MATERIAL_VERSION = "1.3.0"
     const val ANDROIDX_CONSTRAINT_LAYOUT_VERSION = "2.0.4"
+    const val ANDROIDX_SWIPE_REFRESH_LAYOUT_VERSION = "1.1.0"
 
     const val DI_KOIN_VERSION = "3.0.1"
 
@@ -103,6 +104,9 @@ object Libs {
     // Fragments
     val fragments = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_VERSION}"
     val viewModels = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE_VERSION}"
+
+    // SwipeRefresh layout
+    val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.ANDROIDX_SWIPE_REFRESH_LAYOUT_VERSION}"
 
     //Navigation
     val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.JETPACK_NAVIGATION_VERSION}"

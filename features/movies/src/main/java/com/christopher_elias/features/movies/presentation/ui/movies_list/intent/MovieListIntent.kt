@@ -16,4 +16,6 @@ sealed class MovieListIntent : MviIntent {
      * When the user enters the screen (In this case this is also an intent as we need to trigger the Load movies action).
      */
     object InitialIntent : MovieListIntent()
+
+    object SwipeOnRefresh : MovieListIntent()
 }

@@ -13,6 +13,7 @@ import com.christopher_elias.features.movies.databinding.FragmentMovieListBindin
 import com.christopher_elias.features.movies.mvi_core.MviView
 import com.christopher_elias.features.movies.presentation.ui.movies_list.intent.MovieListIntent
 import com.christopher_elias.utils.consumeOnce
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,6 +26,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * Lima, Peru.
  */
 
+@FlowPreview
 class MovieListFragment : Fragment(R.layout.fragment_movie_list),
     MviView<MovieListIntent, MovieListUiState> {
 
@@ -54,7 +56,11 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
          * This approach of merge flows it's taken from Etienne Caron in
          * https://github.com/kanawish/upvote/blob/3d06158db2d01af1b881dfbc91500ca147bd3591/app/src/main/java/com/kanawish/upvote/view/MainActivity.kt#L85
          */
-        val flowIntents = listOf(initialIntent())
+        val flowIntents = listOf(
+            initialIntent(),
+            binding.swipeRefreshMovies.flowRefresh()
+                .map { MovieListIntent.SwipeOnRefresh }
+        )
         return flowIntents.asFlow().flattenMerge(flowIntents.size)
     }
 
@@ -77,8 +83,8 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
 
     override fun render(state: MovieListUiState) {
         with(state) {
-            // Progress
-            binding.progressBarMovies.isVisible = isLoading
+            // SwipeRefreshProgress
+            binding.swipeRefreshMovies.isRefreshing = isLoading
 
             // Bind movies.
             (binding.rvMovies.adapter as MovieListAdapter)

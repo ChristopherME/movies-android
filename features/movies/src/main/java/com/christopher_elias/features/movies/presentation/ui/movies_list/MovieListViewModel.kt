@@ -8,6 +8,7 @@ import com.christopher_elias.features.movies.presentation.ui.movies_list.intent.
 import com.christopher_elias.features.movies.presentation.ui.movies_list.processor.MovieListProcessorHolder
 import com.christopher_elias.features.movies.presentation.ui.movies_list.result.MovieListResult
 import com.christopher_elias.utils.toOneTimeEvent
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
  * Lima, Peru.
  */
 
+@ExperimentalCoroutinesApi
 class MovieListViewModel(
     private val actionProcessorHolder: MovieListProcessorHolder
 ) : ViewModel(), MviViewModel<MovieListIntent, MovieListAction, MovieListUiState> {
@@ -40,11 +42,19 @@ class MovieListViewModel(
     override fun mapIntentToAction(intent: MovieListIntent): MovieListAction {
         return when (intent) {
             MovieListIntent.InitialIntent -> MovieListAction.LoadMoviesAction
+            MovieListIntent.SwipeOnRefresh -> MovieListAction.LoadMoviesAction
         }
     }
 
     private fun reduce(result: MovieListResult) {
         when (result) {
+            is MovieListResult.Success -> {
+                _uiState.value = uiState.value.copy(
+                    isLoading = false,
+                    movies = result.movies,
+                    error = null
+                )
+            }
             is MovieListResult.Error -> {
                 _uiState.value = uiState.value.copy(
                     isLoading = false,
@@ -53,13 +63,6 @@ class MovieListViewModel(
             }
             MovieListResult.Loading -> {
                 _uiState.value = uiState.value.copy(isLoading = true)
-            }
-            is MovieListResult.Success -> {
-                _uiState.value = uiState.value.copy(
-                    isLoading = false,
-                    movies = result.movies,
-                    error = null
-                )
             }
         }
     }
