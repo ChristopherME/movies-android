@@ -10,14 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.christopher_elias.features.movies.R
 import com.christopher_elias.features.movies.databinding.FragmentMovieListBinding
-import com.christopher_elias.common.models.presentation.MovieUi
-import com.christopher_elias.features.movies.presentation.ui.movies_detail.MovieDetailBottomSheetFragment
-import com.christopher_elias.features.movies.presentation.ui.movies_list.adapter.MovieListAdapter
+import com.christopher_elias.features.movies.mvi_core.MviView
+import com.christopher_elias.features.movies.presentation.ui.movies_list.intent.MovieListIntent
 import com.christopher_elias.utils.consumeOnce
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 /*
  * Created by Christopher Elias on 26/04/2021
@@ -27,7 +26,9 @@ import timber.log.Timber
  * Lima, Peru.
  */
 
-class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
+@FlowPreview
+class MovieListFragment : Fragment(R.layout.fragment_movie_list),
+    MviView<MovieListIntent, MovieListUiState> {
 
     private var _binding: FragmentMovieListBinding? = null
     private val binding: FragmentMovieListBinding
@@ -50,22 +51,40 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
         collectUiState()
     }
 
+    override fun intents(): Flow<MovieListIntent> {
+        /*
+         * This approach of merge flows it's taken from Etienne Caron in
+         * https://github.com/kanawish/upvote/blob/3d06158db2d01af1b881dfbc91500ca147bd3591/app/src/main/java/com/kanawish/upvote/view/MainActivity.kt#L85
+         */
+        val flowIntents = listOf(
+            initialIntent(),
+            binding.swipeRefreshMovies.flowRefresh()
+                .map { MovieListIntent.SwipeOnRefresh }
+        )
+        return flowIntents.asFlow().flattenMerge(flowIntents.size)
+    }
+
+    private fun initialIntent(): Flow<MovieListIntent> =
+        flow { emit(MovieListIntent.InitialIntent) }
+
     private fun initView() {
         binding.rvMovies.adapter = MovieListAdapter()
+
+        moviesViewModel.processIntents(intents())
     }
 
     private fun collectUiState() {
         viewLifecycleOwner.lifecycleScope.launch {
             moviesViewModel.uiState.collect { state ->
-                renderUiState(state)
+                render(state)
             }
         }
     }
 
-    private fun renderUiState(state: MovieListUiState) {
+    override fun render(state: MovieListUiState) {
         with(state) {
-            // Progress
-            binding.progressBarMovies.isVisible = isLoading
+            // SwipeRefreshProgress
+            binding.swipeRefreshMovies.isRefreshing = isLoading
 
             // Bind movies.
             (binding.rvMovies.adapter as MovieListAdapter)
@@ -85,15 +104,6 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
                 }
             }
         }
-    }
-
-    private fun onMovieClicked(movie: MovieUi) {
-        Timber.d("Movie: $movie")
-        MovieDetailBottomSheetFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable("movie", movie)
-            }
-        }.show(childFragmentManager, "MovieDetail")
     }
 
     override fun onDestroyView() {
