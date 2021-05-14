@@ -2,13 +2,13 @@ package com.christopher_elias.features.movies.presentation.ui.movies_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.christopher_elias.functional_programming.Failure
-import com.christopher_elias.features.movies.domain.MoviesRepository
-import com.christopher_elias.common.models.mapper.MovieMapper
-import com.christopher_elias.common.models.presentation.MovieUi
+import com.christopher_elias.features.movies.mvi_core.MviViewModel
+import com.christopher_elias.features.movies.presentation.ui.movies_list.action.MovieListAction
+import com.christopher_elias.features.movies.presentation.ui.movies_list.intent.MovieListIntent
+import com.christopher_elias.features.movies.presentation.ui.movies_list.processor.MovieListProcessorHolder
+import com.christopher_elias.features.movies.presentation.ui.movies_list.result.MovieListResult
 import com.christopher_elias.utils.toOneTimeEvent
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 /*
@@ -20,42 +20,47 @@ import kotlinx.coroutines.launch
  */
 
 class MovieListViewModel(
-    private val moviesRepository: MoviesRepository,
-    private val mapper: MovieMapper
-) : ViewModel() {
+    private val actionProcessorHolder: MovieListProcessorHolder
+) : ViewModel(), MviViewModel<MovieListIntent, MovieListAction, MovieListUiState> {
 
     private val _uiState = MutableStateFlow(MovieListUiState())
-    val uiState = _uiState.asStateFlow()
 
-    init {
-        getMovies()
-    }
+    override val uiState: StateFlow<MovieListUiState>
+        get() = _uiState.asStateFlow()
 
-    private fun getMovies() {
+    override fun processIntents(intents: Flow<MovieListIntent>) {
         viewModelScope.launch {
-
-            _uiState.value = uiState.value.copy(isLoading = true)
-
-            moviesRepository
-                .getMovies()
-                .coMapSuccess { domainMovies -> mapper.mapDomainMoviesListToUi(domainMovies) }
-                .either(::handleGetMoviesFailure, ::handleGetMoviesSuccess)
+            intents
+                .map { intent -> mapIntentToAction(intent = intent) }
+                .flatMapLatest { action -> actionProcessorHolder.processAction(action) }
+                .collect { result -> reduce(result) }
         }
-
     }
 
-    private fun handleGetMoviesSuccess(movies: List<MovieUi>) {
-        _uiState.value = uiState.value.copy(
-            isLoading = false,
-            movies = movies,
-            error = null
-        )
+    override fun mapIntentToAction(intent: MovieListIntent): MovieListAction {
+        return when (intent) {
+            MovieListIntent.InitialIntent -> MovieListAction.LoadMoviesAction
+        }
     }
 
-    private fun handleGetMoviesFailure(failure: Failure) {
-        _uiState.value = uiState.value.copy(
-            isLoading = false,
-            error = failure.toOneTimeEvent()
-        )
+    private fun reduce(result: MovieListResult) {
+        when (result) {
+            is MovieListResult.Error -> {
+                _uiState.value = uiState.value.copy(
+                    isLoading = false,
+                    error = result.failure.toOneTimeEvent()
+                )
+            }
+            MovieListResult.Loading -> {
+                _uiState.value = uiState.value.copy(isLoading = true)
+            }
+            is MovieListResult.Success -> {
+                _uiState.value = uiState.value.copy(
+                    isLoading = false,
+                    movies = result.movies,
+                    error = null
+                )
+            }
+        }
     }
 }
