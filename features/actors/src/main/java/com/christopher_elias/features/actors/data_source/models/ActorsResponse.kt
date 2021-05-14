@@ -15,6 +15,6 @@ data class ActorsResponse(
     @field:Json(name = "id") val id: Int,
     @field:Json(name = "name") val name: String,
     @field:Json(name = "popularity") val popularity: Double,
-    @field:Json(name = "profile_path") val profilePath: String,
+    @field:Json(name = "profile_path") val profilePath: String?,
     @field:Json(name = "known_for") val knownFor: List<MovieResponse>
 )

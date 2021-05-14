@@ -38,7 +38,7 @@ internal class ActorsMapperImpl(
             id = remoteActor.id,
             name = remoteActor.name,
             popularity = remoteActor.popularity,
-            profilePath = remoteActor.profilePath,
+            profilePath = remoteActor.profilePath?.completePath(),
             knownFor = movieMapper.mapRemoteMoviesListToDomain(remoteActor.knownFor)
         )
     }
@@ -66,4 +66,9 @@ internal class ActorsMapperImpl(
             knownFor = movieMapper.mapDomainMoviesListToUi(domainActor.knownFor)
         )
     }
+}
+
+fun String?.completePath(): String? {
+    if (this == null) return null
+    return "https://image.tmdb.org/t/p/w185/$this"
 }

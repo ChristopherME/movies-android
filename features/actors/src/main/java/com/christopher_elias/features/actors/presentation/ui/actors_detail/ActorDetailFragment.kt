@@ -45,7 +45,9 @@ class ActorDetailFragment : Fragment(R.layout.fragment_actor_detail) {
         with(args.actor) {
             binding.tvActorName.text = name
 
-            binding.ivActorProfileImage.load("https://image.tmdb.org/t/p/w185/$profilePath")
+            binding.ivActorProfileImage.load(profilePath) {
+                fallback(R.drawable.ic_failure)
+            }
 
             binding.rvMovies.setHasFixedSize(true)
             binding.rvMovies.adapter = ActorKnownForAdapter(movies = knownFor)
