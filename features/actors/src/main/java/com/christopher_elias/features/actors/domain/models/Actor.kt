@@ -14,6 +14,6 @@ data class Actor(
     val id: Int,
     val name: String,
     val popularity: Double,
-    val profilePath: String,
+    val profilePath: String?,
     val knownFor: List<Movie>
 )

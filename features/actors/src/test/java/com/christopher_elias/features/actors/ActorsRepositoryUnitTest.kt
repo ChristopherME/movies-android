@@ -11,6 +11,7 @@ import com.christopher_elias.features.actors.data_source.remote.retrofit.ActorsS
 import com.christopher_elias.features.actors.domain.repository.ActorsRepository
 import com.christopher_elias.features.actors.mapper.ActorsMapper
 import com.christopher_elias.features.actors.mapper.ActorsMapperImpl
+import com.christopher_elias.features.actors.mapper.completePath
 import com.christopher_elias.network.middleware.provider.MiddlewareProvider
 import com.christopher_elias.network.models.base.ResponseItems
 import com.christopher_elias.network.models.exception.NetworkMiddlewareFailure
@@ -124,7 +125,7 @@ class ActorsRepositoryUnitTest {
 
                 assertEquals(
                     "Remote actor profilePath is not the same as the Domain actor profilePath",
-                    remoteActor.profilePath,
+                    remoteActor.profilePath.completePath(),
                     domainActor.profilePath
                 )
 

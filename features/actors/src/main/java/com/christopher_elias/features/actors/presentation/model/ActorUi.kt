@@ -17,7 +17,7 @@ data class ActorUi(
     val id: Int,
     val name: String,
     val popularity: Double,
-    val profilePath: String,
+    val profilePath: String?,
     val moviesNames: String,
     val knownFor: List<MovieUi>
 ) : Parcelable

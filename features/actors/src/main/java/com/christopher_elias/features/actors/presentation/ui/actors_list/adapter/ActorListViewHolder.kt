@@ -3,7 +3,7 @@ package com.christopher_elias.features.actors.presentation.ui.actors_list.adapte
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import coil.transform.RoundedCornersTransformation
+import com.christopher_elias.features.actors.R
 import com.christopher_elias.features.actors.databinding.ItemActorBinding
 import com.christopher_elias.features.actors.presentation.model.ActorUi
 
@@ -22,7 +22,8 @@ internal class ActorListViewHolder(
     fun bind(actor: ActorUi) {
         binding.tvActorName.text = actor.name
         binding.tvActorWorkOn.text = actor.moviesNames
-        binding.ivActorProfileImage.load("https://image.tmdb.org/t/p/w185/${actor.profilePath}") {
+        binding.ivActorProfileImage.load(actor.profilePath) {
+            fallback(R.drawable.ic_failure)
             crossfade(durationMillis = 2000)
             transformations(CircleCropTransformation())
         }
