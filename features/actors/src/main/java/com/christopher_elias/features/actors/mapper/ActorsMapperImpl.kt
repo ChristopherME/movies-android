@@ -38,7 +38,7 @@ internal class ActorsMapperImpl(
             id = remoteActor.id,
             name = remoteActor.name,
             popularity = remoteActor.popularity,
-            profilePath = remoteActor.profilePath?.completePath(),
+            profilePath = remoteActor.profilePath.completePath(),
             knownFor = movieMapper.mapRemoteMoviesListToDomain(remoteActor.knownFor)
         )
     }

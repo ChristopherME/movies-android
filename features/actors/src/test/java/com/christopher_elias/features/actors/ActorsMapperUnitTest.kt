@@ -8,6 +8,7 @@ import com.christopher_elias.features.actors.data_source.models.ActorsResponse
 import com.christopher_elias.features.actors.domain.models.Actor
 import com.christopher_elias.features.actors.mapper.ActorsMapper
 import com.christopher_elias.features.actors.mapper.ActorsMapperImpl
+import com.christopher_elias.features.actors.mapper.completePath
 import com.christopher_elias.utils.resource_provider.ResourceProvider
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestCoroutineDispatcher
@@ -93,7 +94,7 @@ class ActorsMapperUnitTest {
 
         assertEquals(
             "Remote actor profilePath is not the same as the Domain actor profilePath",
-            remoteActor.profilePath,
+            remoteActor.profilePath.completePath(),
             domainActor.profilePath
         )
 
