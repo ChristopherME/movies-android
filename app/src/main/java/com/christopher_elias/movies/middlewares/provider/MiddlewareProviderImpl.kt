@@ -1,6 +1,5 @@
 package com.christopher_elias.movies.middlewares.provider
 
-import com.christopher_elias.movies.middlewares.ConnectivityMiddleware
 import com.christopher_elias.network.middleware.NetworkMiddleware
 import com.christopher_elias.network.middleware.provider.MiddlewareProvider
 
@@ -12,13 +11,23 @@ import com.christopher_elias.network.middleware.provider.MiddlewareProvider
  * Lima, Peru.
  */
 
-class MiddlewareProviderImpl(
-    private val connectivityMiddleware: ConnectivityMiddleware
+class MiddlewareProviderImpl private constructor(
+    private val middlewareList: List<NetworkMiddleware> = listOf()
 ) : MiddlewareProvider {
 
-    private val middlewareList: List<NetworkMiddleware> by lazy {
-        listOf(connectivityMiddleware)
+    class Builder(
+        private val middlewareList: MutableList<NetworkMiddleware> = mutableListOf()
+    ) {
+
+        fun add(middleware: NetworkMiddleware) = apply {
+            this.middlewareList.add(middleware)
+        }
+
+        fun build() = MiddlewareProviderImpl(
+            middlewareList = middlewareList
+        )
     }
+
 
     override fun getAll(): List<NetworkMiddleware> = middlewareList
 }

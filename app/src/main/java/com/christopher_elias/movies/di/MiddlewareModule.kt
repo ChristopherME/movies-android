@@ -15,13 +15,15 @@ import org.koin.dsl.module
 
 val middleWareModule = module {
 
-    // List all your middleware here. For more than one middleware, instantiate them with "named".
-    factory { ConnectivityMiddleware(connectivityUtils = get(), resourceProvider = get()) }
-
     // Singleton instance of middleware provider.
     single<MiddlewareProvider> {
-        MiddlewareProviderImpl(
-            connectivityMiddleware = get()
-        )
+        MiddlewareProviderImpl.Builder()
+            .add(
+                middleware = ConnectivityMiddleware(
+                    connectivityUtils = get(),
+                    resourceProvider = get()
+                )
+            )
+            .build()
     }
 }
