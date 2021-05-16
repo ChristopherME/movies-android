@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_small"
         android:layout_marginEnd="@dimen/padding_regular"
+        android:ellipsize="end"
         android:maxLines="4"
         android:textAppearance="?attr/textAppearanceBody2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,14 +118,14 @@
 
     <TextView
         android:id="@+id/tvMovieInfo"
-        android:padding="@dimen/padding_regular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/feature_movie_detail_tv_info"
         android:drawablePadding="@dimen/padding_small"
+        android:padding="@dimen/padding_regular"
+        android:text="@string/feature_movie_detail_tv_info"
         android:textAppearance="?attr/textAppearanceBody1"
-        app:layout_constraintTop_toBottomOf="@id/lineDivider"
+        app:drawableEndCompat="@drawable/ic_right_arrow"
         app:drawableStartCompat="@drawable/ic_information"
-        app:drawableEndCompat="@drawable/ic_right_arrow"/>
+        app:layout_constraintTop_toBottomOf="@id/lineDivider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
