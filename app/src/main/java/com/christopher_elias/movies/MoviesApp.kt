@@ -23,9 +23,6 @@ class MoviesApp : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            // Koin Android logger
-            androidLogger()
-
             // Inject Android Context
             androidContext(this@MoviesApp)
 
