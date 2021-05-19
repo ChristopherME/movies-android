@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.callbackFlow
 
 /*
  * Created by Christopher Elias on 14/05/2021
- * christopher.elias@loop-ideas.com
+ * christopher.mike.96@gmail.com
  *
  * Loop Ideas
  * Lima, Peru.

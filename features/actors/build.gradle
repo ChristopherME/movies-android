@@ -4,6 +4,10 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
 
+    defaultConfig {
+        testInstrumentationRunner 'com.christopher_elias.features.actors.KoinTestRunner'
+    }
+
     sourceSets {
         String sharedTestDir = 'src/sharedTest/java'
         test {
@@ -18,6 +22,10 @@ android {
 
     buildFeatures {
         viewBinding = true
+    }
+
+    testOptions {
+        animationsDisabled = true
     }
 }
 

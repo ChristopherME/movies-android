@@ -60,7 +60,7 @@ class ActorsListFragment : Fragment(R.layout.fragment_actors_list) {
         }
     }
 
-    private fun renderUiState(state: ActorsListUiState) {
+    fun renderUiState(state: ActorsListUiState) {
         with(state) {
             // Progress
             binding.progressBarActors.isVisible = isLoading
@@ -71,6 +71,7 @@ class ActorsListFragment : Fragment(R.layout.fragment_actors_list) {
 
             // Empty view
             binding.tvActorsEmpty.isVisible = !isLoading && actors.isEmpty()
+            binding.rvActors.isVisible = actors.isNotEmpty()
 
             // Display error if any. Only once.
             error?.let {

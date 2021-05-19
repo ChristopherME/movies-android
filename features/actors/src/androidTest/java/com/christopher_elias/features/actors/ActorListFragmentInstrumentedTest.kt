@@ -7,32 +7,17 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.christopher_elias.common.models.mapper.MovieMapper
-import com.christopher_elias.common.models.mapper.MovieMapperImpl
-import com.christopher_elias.features.actors.data.data_source.ActorsRemoteDataSource
-import com.christopher_elias.features.actors.data.repository.ActorsRepositoryImpl
-import com.christopher_elias.features.actors.data_source.models.ActorsResponse
-import com.christopher_elias.features.actors.data_source.remote.ActorsRemoteDataSourceImpl
-import com.christopher_elias.features.actors.data_source.remote.retrofit.ActorsService
-import com.christopher_elias.features.actors.domain.repository.ActorsRepository
-import com.christopher_elias.features.actors.mapper.ActorsMapper
-import com.christopher_elias.features.actors.mapper.ActorsMapperImpl
+import com.christopher_elias.features.actors.presentation.model.ActorUi
 import com.christopher_elias.features.actors.presentation.ui.actors_list.ActorsListFragment
 import com.christopher_elias.features.actors.presentation.ui.actors_list.ActorsListViewModel
-import com.christopher_elias.network.middleware.NetworkMiddleware
-import com.christopher_elias.network.middleware.provider.MiddlewareProvider
-import com.christopher_elias.network.models.base.ResponseItems
-import com.christopher_elias.test_shared.middleware.DefaultTestNetworkMiddleware
-import com.christopher_elias.test_shared.network.DefaultRemoteConfig
-import com.christopher_elias.utils.resource_provider.ResourceProvider
+import com.christopher_elias.features.actors.presentation.ui.actors_list.state.ActorsListUiState
+import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.koin.test.AutoCloseKoinTest
 
@@ -54,102 +39,78 @@ import org.koin.test.AutoCloseKoinTest
 class ActorListFragmentInstrumentedTest : AutoCloseKoinTest() {
 
     private lateinit var scenario: FragmentScenario<ActorsListFragment>
-    private val testDispatcher = TestCoroutineDispatcher()
-    private val remoteErrorAdapter = DefaultRemoteConfig.provideRemoteErrorAdapter()
+    private val actorsViewModel: ActorsListViewModel = mockk(relaxed = true)
 
     @Before
     fun setUp() {
-        initDi()
-        scenario = launchFragmentInContainer(themeResId = R.style.Movies_DayNight)
-    }
-
-    private fun initDi() {
-        val appModuleMocked = module {
-            single(named("TMDB_KEY")) { "" }
-            single<ResourceProvider> { MockResourceProviderImpl() }
-        }
-        val actorsFeatureModuleMocked = module {
-            //TODO: Fix the mockks in the koin modules,
-            // with out them we can't have more flexible InstrumentedTests
-            // The MiddlewareProvider & ActorsService Should have to be mocked.
-            single<MiddlewareProvider> { MockedMiddlewareProvider() }
-            single<ActorsService> { MockedActorService() }
-            // Remote data source
-            factory<ActorsRemoteDataSource> {
-                ActorsRemoteDataSourceImpl(
-                    middlewareProvider = get(),
-                    ioDispatcher = testDispatcher,
-                    errorAdapter = remoteErrorAdapter,
-                    actorsService = get()
-                )
-            }
-
-            // Mapper
-            factory<MovieMapper> { MovieMapperImpl(defaultDispatcher = testDispatcher) }
-
-            factory<ActorsMapper> {
-                ActorsMapperImpl(
-                    defaultDispatcher = testDispatcher,
-                    movieMapper = get(),
-                    resourceProvider = get()
-                )
-            }
-
-            factory<ActorsRepository> {
-                ActorsRepositoryImpl(
-                    remoteDataSource = get(),
-                    mapper = get()
-                )
-            }
-
-            viewModel { ActorsListViewModel(actorsRepository = get(), mapper = get()) }
-        }
         startKoin {
             modules(
-                appModuleMocked,
-                actorsFeatureModuleMocked
+                module { viewModel { actorsViewModel } }
             )
         }
-    }
-
-    // TODO:
-    //  1- Delay the execution of the items in order to verify the loading screen
-    //  2- Return the items successfully in order to verify the success screen. (With Actors and with no Actors)
-    //  3- Return a failure in order to verify the failure screen
-    @Test
-    fun assert_Actors_List_Fragment_Show_Correct_Views_When_Actors_List_Is_Not_Empty() {
-        // For now everything is going to be loaded as is stated in the "mocked" classes from bellow.
-        // So this is going to test after the view is started and therefore has return all the items.
+        scenario = launchFragmentInContainer(themeResId = R.style.Movies_DayNight)
         scenario.moveToState(newState = Lifecycle.State.STARTED)
-        onView(withId(R.id.progressBarActors)).check(matches(withEffectiveVisibility(Visibility.GONE)))
-        onView(withId(R.id.tvActorsEmpty)).check(matches(withEffectiveVisibility(Visibility.GONE)))
-        onView(withId(R.id.rvActors)).check(matches(isDisplayed()))
     }
-}
 
-class MockedActorService : ActorsService {
-    override suspend fun getActors(language: String, page: Int): ResponseItems<ActorsResponse> {
-        return ResponseItems(
-            listOf(
-                ActorsResponse(
-                    id = 1,
-                    name = "",
-                    popularity = 2.0,
-                    profilePath = null,
-                    knownFor = emptyList()
+    @Test
+    fun assert_Actors_List_Fragment_Render_The_UI_According_The_Loading_State() {
+        scenario.onFragment { fragment ->
+            // Loading State
+            fragment.renderUiState(
+                state = ActorsListUiState(
+                    isLoading = true,
+                    actors = emptyList(),
+                    error = null
                 )
             )
-        )
+        }
+        onView(withId(R.id.tvActorsFeatureTitle)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+        onView(withId(R.id.progressBarActors)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+        onView(withId(R.id.tvActorsEmpty)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+        onView(withId(R.id.rvActors)).check(matches(withEffectiveVisibility(Visibility.GONE)))
     }
-}
 
-class MockedMiddlewareProvider : MiddlewareProvider {
-    override fun getAll(): List<NetworkMiddleware> {
-        return listOf(
-            DefaultTestNetworkMiddleware(
-                isMiddlewareValid = true
+    @Test
+    fun assert_Actors_List_Fragment_Render_The_UI_According_The_Empty_Actors_List_State() {
+        scenario.onFragment { fragment ->
+            // Empty List
+            fragment.renderUiState(
+                state = ActorsListUiState(
+                    isLoading = false,
+                    actors = emptyList(),
+                    error = null
+                )
             )
-        )
+        }
+        onView(withId(R.id.tvActorsFeatureTitle)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+        onView(withId(R.id.progressBarActors)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+        onView(withId(R.id.tvActorsEmpty)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+        onView(withId(R.id.rvActors)).check(matches(withEffectiveVisibility(Visibility.GONE)))
     }
 
+    @Test
+    fun assert_Actors_List_Fragment_Render_The_UI_According_The_Actors_List_State() {
+        scenario.onFragment { fragment ->
+            // List with 'items'
+            fragment.renderUiState(
+                state = ActorsListUiState(
+                    isLoading = false,
+                    actors = listOf(
+                        ActorUi(
+                            id = 1,
+                            "Christopher Elias",
+                            popularity = 10.0,
+                            profilePath = null,
+                            moviesNames = "...",
+                            knownFor = emptyList()
+                        )
+                    )
+                )
+            )
+        }
+        onView(withId(R.id.tvActorsFeatureTitle)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+        onView(withId(R.id.progressBarActors)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+        onView(withId(R.id.tvActorsEmpty)).check(matches(withEffectiveVisibility(Visibility.GONE)))
+        onView(withId(R.id.rvActors)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+    }
 }
