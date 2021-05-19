@@ -4,6 +4,18 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
 
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+        test {
+            java.srcDir sharedTestDir
+            resources.srcDirs += ['src/test/resources']
+        }
+        androidTest {
+            java.srcDir sharedTestDir
+            resources.srcDirs += ['src/test/resources']
+        }
+    }
+
     buildFeatures {
         viewBinding = true
     }
