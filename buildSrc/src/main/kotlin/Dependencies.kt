@@ -121,6 +121,7 @@ object Libs {
 
     // Mockk
     val testMockk = "io.mockk:mockk:${Versions.TEST_MOCKK_VERSION}"
+    val testMockkInstrumented = "io.mockk:mockk-android:${Versions.TEST_MOCKK_VERSION}"
 
     // Junit 4
     val junit4 = "junit:junit:${Versions.TEST_JUNIT_VERSION}"
