@@ -1,12 +1,10 @@
 package com.christopher_elias.movies
 
 import android.app.Application
-import com.christopher_elias.common.models.di.commonModelsModule
 import com.christopher_elias.features.actors.di.featureActorsModule
 import com.christopher_elias.features.movies.di.featureMoviesModule
 import com.christopher_elias.movies.di.*
 import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import timber.log.Timber
 
@@ -23,9 +21,6 @@ class MoviesApp : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
-            // Koin Android logger
-            androidLogger()
-
             // Inject Android Context
             androidContext(this@MoviesApp)
 

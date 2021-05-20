@@ -4,22 +4,34 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
 
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
+        test {
+            java.srcDir sharedTestDir
+            resources.srcDirs += ['src/test/resources']
+        }
+        androidTest {
+            java.srcDir sharedTestDir
+            resources.srcDirs += ['src/test/resources']
+        }
+    }
+
     buildFeatures {
         viewBinding = true
+    }
+
+    testOptions {
+        animationsDisabled = true
     }
 }
 
 dependencies {
-    implementation project(Common.models)
-    implementation project(Common.uiComponents)
-
-    implementation project(Modules.functionalProgramming)
-
     implementation project(Core.views)
     implementation project(Core.network)
-
+    implementation project(Common.models)
+    implementation project(Common.uiComponents)
+    implementation project(Modules.functionalProgramming)
     implementation project(Modules.utils)
-
     implementation Libs.koinAndroidx
     implementation Libs.coroutinesAndroid
     implementation Libs.timber
@@ -29,6 +41,14 @@ dependencies {
     testImplementation Libs.testMockk
     testImplementation Libs.coroutinesTest
     testImplementation Libs.mockwebServer
-
     testImplementation project(Modules.testShared)
+
+    androidTestImplementation Libs.junitExt
+    androidTestImplementation Libs.espresso
+    androidTestImplementation Libs.testMockkInstrumented
+    androidTestImplementation Libs.coroutinesTest
+    androidTestImplementation Libs.koinJvmTest
+    androidTestImplementation project(Modules.testShared)
+
+    debugImplementation Libs.fragmentTest
 }

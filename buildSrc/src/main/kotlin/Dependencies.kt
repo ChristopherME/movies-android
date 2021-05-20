@@ -1,6 +1,6 @@
 object Releases {
-    val versionCode = 3
-    val versionName = "0.1.0"
+    val versionCode = 4
+    val versionName = "0.1.1"
 }
 
 object DefaultConfig {
@@ -35,9 +35,9 @@ object Common {
 
 object Versions {
 
-    const val KOTLIN_VERSION = "1.4.32"
-    const val COROUTINES_VERSION = "1.4.3"
-    const val GRADLE_TOOLS_VERSION = "4.2.0"
+    const val KOTLIN_VERSION = "1.5.0"
+    const val COROUTINES_VERSION = "1.5.0"
+    const val GRADLE_TOOLS_VERSION = "4.2.1"
 
     const val FRAGMENT_VERSION = "1.3.3"
     const val LIFECYCLE_VERSION = "2.3.1"
@@ -61,8 +61,9 @@ object Versions {
     const val GOOGLE_MATERIAL_VERSION = "1.3.0"
     const val ANDROIDX_CONSTRAINT_LAYOUT_VERSION = "2.0.4"
     const val ANDROIDX_SWIPE_REFRESH_LAYOUT_VERSION = "1.1.0"
+    const val ANDROIDX_FRAGMENT_TESTING_VERSION = "1.3.3"
 
-    const val DI_KOIN_VERSION = "3.0.1"
+    const val DI_KOIN_VERSION = "3.0.2"
 
 }
 
@@ -100,6 +101,7 @@ object Libs {
 
     // DI Koin
     val koinAndroidx = "io.insert-koin:koin-android:${Versions.DI_KOIN_VERSION}"
+    val koinJvmTest = "io.insert-koin:koin-test-junit4:${Versions.DI_KOIN_VERSION}"
 
     // Fragments
     val fragments = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_VERSION}"
@@ -119,6 +121,7 @@ object Libs {
 
     // Mockk
     val testMockk = "io.mockk:mockk:${Versions.TEST_MOCKK_VERSION}"
+    val testMockkInstrumented = "io.mockk:mockk-android:${Versions.TEST_MOCKK_VERSION}"
 
     // Junit 4
     val junit4 = "junit:junit:${Versions.TEST_JUNIT_VERSION}"
@@ -129,5 +132,8 @@ object Libs {
 
     // Espresso
     val espresso = "androidx.test.espresso:espresso-core:3.3.0"
+
+    // Fragments
+    val fragmentTest = "androidx.fragment:fragment-testing:${Versions.ANDROIDX_FRAGMENT_TESTING_VERSION}"
 
 }
