@@ -2,8 +2,8 @@ package com.christopher_elias.experimental
 
 import android.os.Bundle
 import android.view.View
-import com.christopher_elias.navigation.transactions.addFragmentExt
-import com.christopher_elias.navigation.transactions.replaceFragmentExt
+import com.christopher_elias.navigation.extensions.addFragmentExt
+import com.christopher_elias.navigation.extensions.replaceFragmentExt
 import com.google.android.material.button.MaterialButton
 
 /*

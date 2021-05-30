@@ -1,8 +1,11 @@
-package com.christopher_elias.navigation.transactions
+package com.christopher_elias.navigation.extensions
 
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.christopher_elias.navigation.transactions.TransactionAnimations
+import com.christopher_elias.navigation.transactions.TransactionType
+import com.christopher_elias.navigation.transactions.extensions.fragmentTransactionExt
 
 /*
  * Created by Christopher Elias on 29/05/2021
