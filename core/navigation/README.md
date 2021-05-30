@@ -9,7 +9,7 @@ It doesn't add any extra functions, just some extension functions for make the a
 
 ## TODO
 Create a BottomNavigationView adapter that handles retain fragment. Probably do something like this
- - Load initial fragments
+ - Load initial fragments (Lazy load)
  - First fragment is added
  - User clicks another tab
  - Hide the current fragment

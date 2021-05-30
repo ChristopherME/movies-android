@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- PUT this id in your ROOT view from your ROOT activity.
+    It will help the transaction extension methods when you want to replace the whole screen.-->
+    <item name="root_container" type="id" />
+</resources>

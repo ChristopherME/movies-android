@@ -3,6 +3,7 @@ package com.christopher_elias.navigation.extensions
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.christopher_elias.navigation.R
 import com.christopher_elias.navigation.transactions.TransactionAnimations
 import com.christopher_elias.navigation.transactions.TransactionType
 import com.christopher_elias.navigation.transactions.extensions.fragmentTransactionExt
@@ -13,6 +14,14 @@ import com.christopher_elias.navigation.transactions.extensions.fragmentTransact
  *
  * Loop Ideas
  * Lima, Peru.
+ */
+
+/*
+ * See [https://stackoverflow.com/a/12887919] for the android.R.id.content explanation.
+ *
+ * Change: We don't use android.R.id.content anymore, now we use own declared Id.
+ * See [https://developer.android.com/guide/topics/resources/more-resources#Id]
+ * See [https://www.programmersought.com/article/6316170400/]
  */
 
 fun Fragment.pop() = parentFragmentManager.popBackStack()
@@ -36,7 +45,7 @@ fun Fragment.replaceFragmentExt(
     newFragment,
     addToBackStack,
     fromActivity,
-    containerId ?: android.R.id.content,
+    containerId ?: R.id.root_container,
     transactionAnimations
 )
 
@@ -55,7 +64,7 @@ fun Fragment.addFragmentExt(
     newFragment,
     addToBackStack,
     fromActivity,
-    containerId ?: android.R.id.content,
+    containerId ?: R.id.root_container,
     transactionAnimations
 )
 

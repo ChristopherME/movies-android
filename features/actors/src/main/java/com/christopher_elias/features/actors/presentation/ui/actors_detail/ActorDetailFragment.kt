@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import coil.load
+import com.christopher_elias.common.models.presentation.MovieUi
 import com.christopher_elias.features.actors.R
 import com.christopher_elias.features.actors.databinding.FragmentActorDetailBinding
+import com.christopher_elias.features.actors.presentation.model.ActorUi
 import com.christopher_elias.features.actors.presentation.ui.actors_detail.adapter.ActorKnownForAdapter
+import com.christopher_elias.navigation.loadFragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 /*
  * Created by Christopher Elias on 2/05/2021
@@ -25,7 +28,7 @@ class ActorDetailFragment : Fragment(R.layout.fragment_actor_detail) {
     private val binding: FragmentActorDetailBinding
         get() = _binding!!
 
-    private val args: ActorDetailFragmentArgs by navArgs()
+    private val actor by lazy { requireArguments().getParcelable<ActorUi>("actor")!! }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +45,7 @@ class ActorDetailFragment : Fragment(R.layout.fragment_actor_detail) {
     }
 
     private fun renderView() {
-        with(args.actor) {
+        with(actor) {
             binding.tvActorName.text = name
 
             binding.ivActorProfileImage.load(profilePath) {
@@ -50,8 +53,17 @@ class ActorDetailFragment : Fragment(R.layout.fragment_actor_detail) {
             }
 
             binding.rvMovies.setHasFixedSize(true)
-            binding.rvMovies.adapter = ActorKnownForAdapter(movies = knownFor)
+            binding.rvMovies.adapter = ActorKnownForAdapter(movies = knownFor, ::showMovieDetail)
         }
+    }
+
+    private fun showMovieDetail(movie: MovieUi) {
+        (loadFragment("com.christopher_elias.features.movies.presentation.ui.movies_detail.MovieDetailBottomSheetFragment") as BottomSheetDialogFragment).apply {
+            arguments = Bundle().apply {
+                putParcelable("movie", movie)
+            }
+        }.show(childFragmentManager, "MovieDetail")
+
     }
 
     override fun onDestroyView() {
