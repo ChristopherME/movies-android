@@ -6,3 +6,13 @@ It doesn't add any extra functions, just some extension functions for make the a
 ## Features
  - Extension functions for ADD & REPLACE fragments.
  - Load classes by qualified name.
+
+## TODO
+Create a BottomNavigationView adapter that handles retain fragment. Probably do something like this
+ - Load initial fragments
+ - First fragment is added
+ - User clicks another tab
+ - Hide the current fragment
+ - Verify the incoming fragment is not added
+  - Is ALREADY added: Show the incoming fragment
+  - Is NOT added: Add & Show the new fragment
