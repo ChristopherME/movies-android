@@ -21,6 +21,7 @@ object Core {
     // For Styles, colors & anything COMMON view related.
     val views = ":core:views" // TODO: Rename this to designSystem.
     val network = ":core:network"
+    val navigation = ":core:navigation"
 }
 
 object Features {
