@@ -58,14 +58,14 @@ fun Fragment.addFragmentExt(
 
 /**
  * Extension for add or replace the fragment to the container.
- * Add means to put the fragment on top of each other,
- * replace will replace the whole fragment view.
+ * [TransactionType.ADD_FRAGMENT] - Will put the [newFragment] on top of the current fragment.
+ * [TransactionType.REPLACE_FRAGMENT] - Will replace the current fragment for the [newFragment] & the current fragment would not be visible.
  *
  * @param transactionType a [TransactionType] object.
  * @param newFragment the fragment to ADD or REPLACE.
- * @param addToBackStack if true then it will be added to the back stack.
- * @param fromActivity If true it means the transaction operation will be performed from the container activity, if not will be performed from the current fragment.
- * @param containerId the container id.
+ * @param addToBackStack if true then, the [newFragment] will be added to the back stack.
+ * @param fromActivity If true it means the transaction operation will be performed from the container activity, if not, will be performed from the current fragment.
+ * @param containerId the VIEW container id. The ID passed here it's supposed to be the ID of the View that contains the Fragment/s. Usually a FrameLayout or a FragmentContainerView.
  * @param transactionAnimations a [TransactionAnimations] object that will determine the animation to apply to the current transaction.
  */
 internal fun Fragment.navUtils(

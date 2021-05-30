@@ -15,14 +15,14 @@ import com.christopher_elias.navigation.R
 
 /**
  * Extension for add or replace the fragment to the container.
- * Add means to put the fragment on top of each other,
- * replace will replace the whole fragment view.
+ * [TransactionType.ADD_FRAGMENT] - Will put the [newFragment] on top of the current fragment.
+ * [TransactionType.REPLACE_FRAGMENT] - Will replace the current fragment for the [newFragment] & the current fragment would not be visible.
  *
  * @param transactionType a [TransactionType] object.
  * @param newFragment the fragment to ADD or REPLACE.
- * @param addToBackStack if true then it will be added to the fragment back stack.
- * @param containerId the container id.
- * @param transactionAnimations NEW. For override animations..
+ * @param addToBackStack if true then, the [newFragment] will be added to the back stack.
+ * @param containerId the VIEW container id. The ID passed here it's supposed to be the ID of the View that contains the Fragment/s. Usually a FrameLayout or a FragmentContainerView.
+ * @param transactionAnimations a [TransactionAnimations] object that will determine the animation to apply to the current transaction.
  */
 internal fun FragmentTransaction.fragmentTransactionExt(
     transactionType: TransactionType,
