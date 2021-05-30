@@ -3,6 +3,9 @@ rootProject.name = "Movies"
 // Main Movie App
 include ':app'
 
+// Experimental App for testing libraries
+include ':experimental'
+
 // Features
 include ':features:actors'
 include ':features:movies'
