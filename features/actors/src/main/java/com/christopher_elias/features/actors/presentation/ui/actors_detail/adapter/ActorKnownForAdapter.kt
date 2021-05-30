@@ -16,7 +16,8 @@ import com.christopher_elias.common.ui_components.databinding.ItemMoviePosterBin
  */
 
 class ActorKnownForAdapter(
-    private val movies: List<MovieUi>
+    private val movies: List<MovieUi>,
+    val listener: (movie: MovieUi) -> Unit
 ) : RecyclerView.Adapter<MoviePosterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviePosterViewHolder {
@@ -29,7 +30,7 @@ class ActorKnownForAdapter(
 
     override fun onBindViewHolder(holder: MoviePosterViewHolder, position: Int) {
         holder.bind(movies[position].image)
-        //TODO: Add navigation to MovieBottomSheet
+        holder.binding.root.setOnClickListener { listener(movies[position]) }
     }
 
     override fun getItemCount(): Int = movies.size

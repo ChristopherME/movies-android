@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.navArgs
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.christopher_elias.common.models.presentation.MovieUi
 import com.christopher_elias.features.movies.databinding.BottomFragmentMovieDetailBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -20,7 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class MovieDetailBottomSheetFragment : BottomSheetDialogFragment() {
 
-    private val args: MovieDetailBottomSheetFragmentArgs by navArgs()
+    private val movie by lazy { requireArguments().getParcelable<MovieUi>("movie")!! }
 
     private var _binding: BottomFragmentMovieDetailBinding? = null
     private val binding: BottomFragmentMovieDetailBinding
@@ -42,7 +42,7 @@ class MovieDetailBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun renderView() {
-        with(args.movie) {
+        with(movie) {
             binding.tvMovieName.text = title
             binding.tvMovieOverview.text = overview
             binding.tvMovieReleaseDate.text = releaseDate

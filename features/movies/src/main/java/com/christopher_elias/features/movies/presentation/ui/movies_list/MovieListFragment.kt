@@ -8,9 +8,11 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.christopher_elias.common.models.presentation.MovieUi
 import com.christopher_elias.features.movies.R
 import com.christopher_elias.features.movies.databinding.FragmentMovieListBinding
 import com.christopher_elias.features.movies.mvi_core.MviView
+import com.christopher_elias.features.movies.presentation.ui.movies_detail.MovieDetailBottomSheetFragment
 import com.christopher_elias.features.movies.presentation.ui.movies_list.intent.MovieListIntent
 import com.christopher_elias.utils.consumeOnce
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -70,7 +72,9 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
         flow { emit(MovieListIntent.InitialIntent) }
 
     private fun initView() {
-        binding.rvMovies.adapter = MovieListAdapter()
+        binding.rvMovies.adapter = MovieListAdapter { movie ->
+            navigateToMovieDetail(movie)
+        }
 
         moviesViewModel.processIntents(intents())
     }
@@ -81,6 +85,16 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
                 render(state)
             }
         }
+    }
+
+    private fun navigateToMovieDetail(movie: MovieUi) {
+        MovieDetailBottomSheetFragment()
+            .apply {
+                arguments = Bundle().apply {
+                    putParcelable("movie", movie)
+                }
+            }
+            .show(childFragmentManager, "MovieDetail")
     }
 
     override fun render(state: MovieListUiState) {
