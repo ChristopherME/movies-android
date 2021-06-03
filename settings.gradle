@@ -1,11 +1,25 @@
-include ':features:actors'
-include ':test-shared'
-include ':core:views'
-include ':features:movies'
-include ':utils'
-include ':core:network'
-include ':functional-programming'
-include ':app'
 rootProject.name = "Movies"
+
+// Main Movie App
+include ':app'
+
+// Experimental App for testing libraries
+include ':experimental'
+
+// Features
+include ':features:actors'
+include ':features:movies'
+
+// Other Modules
+include ':functional-programming'
 include ':common:models'
 include ':common:ui-components'
+
+// Core Modules
+include ':core:views'
+include ':core:network'
+include ':core:navigation'
+
+// Test & Utils modules
+include ':test-shared'
+include ':utils'

@@ -10,8 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.christopher_elias.features.actors.R
 import com.christopher_elias.features.actors.databinding.FragmentActorsListBinding
+import com.christopher_elias.features.actors.presentation.model.ActorUi
+import com.christopher_elias.features.actors.presentation.ui.actors_detail.ActorDetailFragment
 import com.christopher_elias.features.actors.presentation.ui.actors_list.adapter.ActorListAdapter
 import com.christopher_elias.features.actors.presentation.ui.actors_list.state.ActorsListUiState
+import com.christopher_elias.navigation.extensions.replaceFragmentExt
+import com.christopher_elias.navigation.transactions.TransactionAnimations
 import com.christopher_elias.utils.consumeOnce
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -49,7 +53,7 @@ class ActorsListFragment : Fragment(R.layout.fragment_actors_list) {
     }
 
     private fun initView() {
-        binding.rvActors.adapter = ActorListAdapter()
+        binding.rvActors.adapter = ActorListAdapter(::navigateToActorDetail)
     }
 
     private fun collectUiState() {
@@ -58,6 +62,16 @@ class ActorsListFragment : Fragment(R.layout.fragment_actors_list) {
                 renderUiState(state)
             }
         }
+    }
+
+    private fun navigateToActorDetail(actor: ActorUi) {
+        replaceFragmentExt(
+            newFragment = ActorDetailFragment().apply {
+                arguments = Bundle().apply { putParcelable("actor", actor) }
+            },
+            addToBackStack = true,
+            transactionAnimations = TransactionAnimations.RIGHT_TO_LEFT
+        )
     }
 
     fun renderUiState(state: ActorsListUiState) {

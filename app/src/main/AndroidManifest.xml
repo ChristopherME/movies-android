@@ -15,7 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Movies.DayNight"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.MainActivity">
+        <activity
+            android:name=".ui.MainActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

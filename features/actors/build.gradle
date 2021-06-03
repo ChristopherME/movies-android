@@ -28,6 +28,7 @@ android {
 dependencies {
     implementation project(Core.views)
     implementation project(Core.network)
+    implementation project(Core.navigation)
     implementation project(Common.models)
     implementation project(Common.uiComponents)
     implementation project(Modules.functionalProgramming)
