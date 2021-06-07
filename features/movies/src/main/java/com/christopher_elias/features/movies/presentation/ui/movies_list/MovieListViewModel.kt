@@ -9,6 +9,7 @@ import com.christopher_elias.features.movies.presentation.ui.movies_list.process
 import com.christopher_elias.features.movies.presentation.ui.movies_list.result.MovieListResult
 import com.christopher_elias.utils.toOneTimeEvent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -30,12 +31,24 @@ class MovieListViewModel(
     override val uiState: StateFlow<MovieListUiState>
         get() = _uiState.asStateFlow()
 
-    override fun processIntents(intents: Flow<MovieListIntent>) {
+    // Im not using ConflatedBroadcastChannel here because I don't need multiple subscribers.
+    // Probably I have to rename this variable as could be kinda confusing...
+    private val actions = Channel<MovieListAction>()
+
+    init {
+
+        // Trigger the initial intent only once.
+        // TODO: Create some flow filter that only takes the InitialIntent once,
+        //  With that we can remove this line and emit the initial intent from the fragment.
+        processIntents(MovieListIntent.InitialIntent)
+
+        // Subscribe to Actions
+        subscribeActions()
+    }
+
+    override fun processIntents(intent: MovieListIntent) {
         viewModelScope.launch {
-            intents
-                .map { intent -> mapIntentToAction(intent = intent) }
-                .flatMapLatest { action -> actionProcessorHolder.processAction(action) }
-                .collect { result -> reduce(result) }
+            actions.send(mapIntentToAction(intent = intent))
         }
     }
 
@@ -64,6 +77,14 @@ class MovieListViewModel(
             MovieListResult.Loading -> {
                 _uiState.value = uiState.value.copy(isLoading = true)
             }
+        }
+    }
+
+    private fun subscribeActions() {
+        viewModelScope.launch {
+            actions.receiveAsFlow()
+                .flatMapLatest { actionProcessorHolder.processAction(action = it) }
+                .collectLatest { reduce(it) }
         }
     }
 }

@@ -21,7 +21,7 @@ import kotlinx.coroutines.flow.StateFlow
  */
 interface MviViewModel<I : MviIntent, A : MviAction, S : MviViewState> {
 
-    fun processIntents(intents: Flow<I>)
+    fun processIntents(intent: I)
 
     fun mapIntentToAction(intent: I): A
 
