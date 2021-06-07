@@ -7,7 +7,6 @@ import com.christopher_elias.features.actors.presentation.model.ActorUi
  * Created by Christopher Elias on 4/05/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 

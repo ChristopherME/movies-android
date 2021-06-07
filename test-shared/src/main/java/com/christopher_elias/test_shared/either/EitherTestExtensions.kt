@@ -6,7 +6,6 @@ import com.christopher_elias.functional_programming.Either
  * Created by Christopher Elias on 22/04/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 
