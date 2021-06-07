@@ -12,7 +12,6 @@ import com.christopher_elias.navigation.transactions.extensions.fragmentTransact
  * Created by Christopher Elias on 29/05/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 

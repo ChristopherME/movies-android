@@ -12,7 +12,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
  * Created by Christopher Elias on 30/05/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 

@@ -18,7 +18,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
  * Created by Christopher Elias on 2/05/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 

@@ -6,7 +6,6 @@ import okhttp3.OkHttpClient
  * Created by Christopher Elias on 2/05/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 

@@ -7,7 +7,6 @@ import com.christopher_elias.common.models.presentation.MovieUi
  * Created by Christopher Elias on 3/05/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 

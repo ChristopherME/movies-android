@@ -25,7 +25,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * Created by Christopher Elias on 26/04/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 
@@ -52,6 +51,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        processIntents()
         collectUiState()
     }
 
@@ -61,22 +61,22 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
          * https://github.com/kanawish/upvote/blob/3d06158db2d01af1b881dfbc91500ca147bd3591/app/src/main/java/com/kanawish/upvote/view/MainActivity.kt#L85
          */
         val flowIntents = listOf(
-            initialIntent(),
             binding.swipeRefreshMovies.flowRefresh()
                 .map { MovieListIntent.SwipeOnRefresh }
         )
         return flowIntents.asFlow().flattenMerge(flowIntents.size)
     }
 
-    private fun initialIntent(): Flow<MovieListIntent> =
-        flow { emit(MovieListIntent.InitialIntent) }
-
     private fun initView() {
         binding.rvMovies.adapter = MovieListAdapter { movie ->
             navigateToMovieDetail(movie)
         }
+    }
 
-        moviesViewModel.processIntents(intents())
+    private fun processIntents() {
+        intents()
+            .onEach { intent -> moviesViewModel.processIntents(intent) }
+            .launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun collectUiState() {
@@ -109,7 +109,7 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list),
             // Empty view
             binding.tvMoviesEmpty.isVisible = !isLoading && movies.isEmpty()
 
-            // Display error if any. Only once.
+            // Display or Handle error if any. Only once.
             error?.let {
                 it.consumeOnce { failure ->
                     Toast.makeText(
