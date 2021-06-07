@@ -16,10 +16,11 @@ You can checkout how was the migration from MVVM to MVI in this [pull request](h
 
 I write about the process of coding this project in the following blogs:
  - [Understanding MVVM](https://christopher-elias.medium.com/understanding-mvvm-pattern-for-android-in-2021-98b155b37b54)
- - [Integrating Paging3](https://christopher-elias.medium.com/pagination-in-android-with-paging-3-retrofit-and-kotlin-flow-2c2454ff776e)
- - Create a safe retrofit calls extension part [I](https://christopher-elias.medium.com/safe-retrofit-calls-extension-with-kotlin-coroutines-for-android-in-2021-part-i-d47e9e2962ad), [II](https://christopher-elias.medium.com/safe-retrofit-calls-extension-with-kotlin-coroutines-for-android-in-2021-part-ii-fd55842951cf), & [III](https://christopher-elias.medium.com/safe-retrofit-calls-extension-with-kotlin-coroutines-for-android-in-2021-part-iii-583249b0e86b)
  - Understanding and making [unit](https://christopher-elias.medium.com/understanding-unit-tests-for-android-in-2021-71984f370240) & [instrumented](https://christopher-elias.medium.com/easy-instrumented-tests-ui-tests-for-android-in-2021-2e28134ff309) tests.
+ - [The ABC of modularization](https://proandroiddev.com/the-abc-of-modularization-for-android-in-2021-e7b3fbe29fca)
+ - Create a safe retrofit calls extension part [I](https://christopher-elias.medium.com/safe-retrofit-calls-extension-with-kotlin-coroutines-for-android-in-2021-part-i-d47e9e2962ad), [II](https://christopher-elias.medium.com/safe-retrofit-calls-extension-with-kotlin-coroutines-for-android-in-2021-part-ii-fd55842951cf), & [III](https://christopher-elias.medium.com/safe-retrofit-calls-extension-with-kotlin-coroutines-for-android-in-2021-part-iii-583249b0e86b)
  - [Honest thoughts on Jetpack Navigation library in modularized projects](https://christopher-elias.medium.com/honest-thoughts-on-jetpack-navigation-library-in-modularized-projects-782094660c3)
+ - [Integrating Paging3](https://christopher-elias.medium.com/pagination-in-android-with-paging-3-retrofit-and-kotlin-flow-2c2454ff776e)
 
 ## Development setup
 

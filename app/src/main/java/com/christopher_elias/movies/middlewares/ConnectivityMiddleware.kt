@@ -10,7 +10,6 @@ import com.christopher_elias.utils.connectivity.ConnectivityUtils
  * Created by Christopher Elias on 3/05/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 

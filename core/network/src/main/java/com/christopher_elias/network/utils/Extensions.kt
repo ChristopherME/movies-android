@@ -20,7 +20,6 @@ import javax.net.ssl.SSLHandshakeException
  * Created by Christopher Elias on 22/04/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 

@@ -6,7 +6,6 @@ import com.christopher_elias.utils.resource_provider.ResourceProvider
  * Created by Christopher Elias on 4/05/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 

@@ -19,7 +19,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
  * Created by Christopher Elias on 27/04/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 

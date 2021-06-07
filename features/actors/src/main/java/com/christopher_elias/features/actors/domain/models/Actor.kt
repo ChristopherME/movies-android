@@ -6,7 +6,6 @@ import com.christopher_elias.common.models.domain.Movie
  * Created by Christopher Elias on 2/05/2021
  * christopher.mike.96@gmail.com
  *
- * Loop Ideas
  * Lima, Peru.
  */
 
